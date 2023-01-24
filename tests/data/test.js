@@ -16,7 +16,7 @@ $root.jspb = (function() {
      * @exports jspb
      * @namespace
      */
-    var jspb = {};
+    var jspb = $root.jspb || {};
 
     jspb.test = (function() {
 
@@ -25,7 +25,7 @@ $root.jspb = (function() {
          * @memberof jspb
          * @namespace
          */
-        var test = {};
+        var test = $root.jspb.test || {};
 
         test.Empty = (function() {
 
@@ -308,9 +308,10 @@ $root.jspb = (function() {
                 while (reader.pos < end) {
                     var tag = reader.uint32();
                     switch (tag >>> 3) {
-                    case 1:
-                        message.outerEnum = reader.int32();
-                        break;
+                    case 1: {
+                            message.outerEnum = reader.int32();
+                            break;
+                        }
                     default:
                         reader.skipType(tag & 7);
                         break;
@@ -370,6 +371,12 @@ $root.jspb = (function() {
                     return object;
                 var message = new $root.jspb.test.EnumContainer();
                 switch (object.outerEnum) {
+                default:
+                    if (typeof object.outerEnum === "number") {
+                        message.outerEnum = object.outerEnum;
+                        break;
+                    }
+                    break;
                 case "FOO":
                 case 1:
                     message.outerEnum = 1;
@@ -398,7 +405,7 @@ $root.jspb = (function() {
                 if (options.defaults)
                     object.outerEnum = options.enums === String ? "FOO" : 1;
                 if (message.outerEnum != null && message.hasOwnProperty("outerEnum"))
-                    object.outerEnum = options.enums === String ? $root.jspb.test.OuterEnum[message.outerEnum] : message.outerEnum;
+                    object.outerEnum = options.enums === String ? $root.jspb.test.OuterEnum[message.outerEnum] === undefined ? message.outerEnum : $root.jspb.test.OuterEnum[message.outerEnum] : message.outerEnum;
                 return object;
             };
 
@@ -546,17 +553,20 @@ $root.jspb = (function() {
                 while (reader.pos < end) {
                     var tag = reader.uint32();
                     switch (tag >>> 3) {
-                    case 1:
-                        message.aString = reader.string();
-                        break;
-                    case 2:
-                        if (!(message.aRepeatedString && message.aRepeatedString.length))
-                            message.aRepeatedString = [];
-                        message.aRepeatedString.push(reader.string());
-                        break;
-                    case 3:
-                        message.aBoolean = reader.bool();
-                        break;
+                    case 1: {
+                            message.aString = reader.string();
+                            break;
+                        }
+                    case 2: {
+                            if (!(message.aRepeatedString && message.aRepeatedString.length))
+                                message.aRepeatedString = [];
+                            message.aRepeatedString.push(reader.string());
+                            break;
+                        }
+                    case 3: {
+                            message.aBoolean = reader.bool();
+                            break;
+                        }
                     default:
                         reader.skipType(tag & 7);
                         break;
@@ -799,14 +809,16 @@ $root.jspb = (function() {
                 while (reader.pos < end) {
                     var tag = reader.uint32();
                     switch (tag >>> 3) {
-                    case 1:
-                        message.aString = reader.string();
-                        break;
-                    case 2:
-                        if (!(message.aRepeatedString && message.aRepeatedString.length))
-                            message.aRepeatedString = [];
-                        message.aRepeatedString.push(reader.string());
-                        break;
+                    case 1: {
+                            message.aString = reader.string();
+                            break;
+                        }
+                    case 2: {
+                            if (!(message.aRepeatedString && message.aRepeatedString.length))
+                                message.aRepeatedString = [];
+                            message.aRepeatedString.push(reader.string());
+                            break;
+                        }
                     default:
                         reader.skipType(tag & 7);
                         break;
@@ -1057,18 +1069,22 @@ $root.jspb = (function() {
                 while (reader.pos < end) {
                     var tag = reader.uint32();
                     switch (tag >>> 3) {
-                    case 1:
-                        message.normal = reader.string();
-                        break;
-                    case 2:
-                        message["default"] = reader.string();
-                        break;
-                    case 3:
-                        message["function"] = reader.string();
-                        break;
-                    case 4:
-                        message["var"] = reader.string();
-                        break;
+                    case 1: {
+                            message.normal = reader.string();
+                            break;
+                        }
+                    case 2: {
+                            message["default"] = reader.string();
+                            break;
+                        }
+                    case 3: {
+                            message["function"] = reader.string();
+                            break;
+                        }
+                    case 4: {
+                            message["var"] = reader.string();
+                            break;
+                        }
                     default:
                         reader.skipType(tag & 7);
                         break;
@@ -1344,25 +1360,30 @@ $root.jspb = (function() {
                 while (reader.pos < end) {
                     var tag = reader.uint32();
                     switch (tag >>> 3) {
-                    case 1:
-                        message.aString = reader.string();
-                        break;
-                    case 2:
-                        message.aBool = reader.bool();
-                        break;
-                    case 3:
-                        message.aNestedMessage = $root.jspb.test.OptionalFields.Nested.decode(reader, reader.uint32());
-                        break;
-                    case 4:
-                        if (!(message.aRepeatedMessage && message.aRepeatedMessage.length))
-                            message.aRepeatedMessage = [];
-                        message.aRepeatedMessage.push($root.jspb.test.OptionalFields.Nested.decode(reader, reader.uint32()));
-                        break;
-                    case 5:
-                        if (!(message.aRepeatedString && message.aRepeatedString.length))
-                            message.aRepeatedString = [];
-                        message.aRepeatedString.push(reader.string());
-                        break;
+                    case 1: {
+                            message.aString = reader.string();
+                            break;
+                        }
+                    case 2: {
+                            message.aBool = reader.bool();
+                            break;
+                        }
+                    case 3: {
+                            message.aNestedMessage = $root.jspb.test.OptionalFields.Nested.decode(reader, reader.uint32());
+                            break;
+                        }
+                    case 4: {
+                            if (!(message.aRepeatedMessage && message.aRepeatedMessage.length))
+                                message.aRepeatedMessage = [];
+                            message.aRepeatedMessage.push($root.jspb.test.OptionalFields.Nested.decode(reader, reader.uint32()));
+                            break;
+                        }
+                    case 5: {
+                            if (!(message.aRepeatedString && message.aRepeatedString.length))
+                                message.aRepeatedString = [];
+                            message.aRepeatedString.push(reader.string());
+                            break;
+                        }
                     default:
                         reader.skipType(tag & 7);
                         break;
@@ -1629,9 +1650,10 @@ $root.jspb = (function() {
                     while (reader.pos < end) {
                         var tag = reader.uint32();
                         switch (tag >>> 3) {
-                        case 1:
-                            message.anInt = reader.int32();
-                            break;
+                        case 1: {
+                                message.anInt = reader.int32();
+                                break;
+                            }
                         default:
                             reader.skipType(tag & 7);
                             break;
@@ -1926,37 +1948,46 @@ $root.jspb = (function() {
                 while (reader.pos < end) {
                     var tag = reader.uint32();
                     switch (tag >>> 3) {
-                    case 1:
-                        message.str1 = reader.string();
-                        break;
-                    case 2:
-                        message.str2 = reader.string();
-                        break;
-                    case 3:
-                        message.str3 = reader.string();
-                        break;
-                    case 100:
-                        message[".jspb.test.IsExtension.extField"] = $root.jspb.test.IsExtension.decode(reader, reader.uint32());
-                        break;
-                    case 101:
-                        message[".jspb.test.IndirectExtension.simple"] = $root.jspb.test.Simple1.decode(reader, reader.uint32());
-                        break;
-                    case 102:
-                        message[".jspb.test.IndirectExtension.str"] = reader.string();
-                        break;
-                    case 103:
-                        if (!(message[".jspb.test.IndirectExtension.repeatedStr"] && message[".jspb.test.IndirectExtension.repeatedStr"].length))
-                            message[".jspb.test.IndirectExtension.repeatedStr"] = [];
-                        message[".jspb.test.IndirectExtension.repeatedStr"].push(reader.string());
-                        break;
-                    case 104:
-                        if (!(message[".jspb.test.IndirectExtension.repeatedSimple"] && message[".jspb.test.IndirectExtension.repeatedSimple"].length))
-                            message[".jspb.test.IndirectExtension.repeatedSimple"] = [];
-                        message[".jspb.test.IndirectExtension.repeatedSimple"].push($root.jspb.test.Simple1.decode(reader, reader.uint32()));
-                        break;
-                    case 105:
-                        message[".jspb.test.simple1"] = $root.jspb.test.Simple1.decode(reader, reader.uint32());
-                        break;
+                    case 1: {
+                            message.str1 = reader.string();
+                            break;
+                        }
+                    case 2: {
+                            message.str2 = reader.string();
+                            break;
+                        }
+                    case 3: {
+                            message.str3 = reader.string();
+                            break;
+                        }
+                    case 100: {
+                            message[".jspb.test.IsExtension.extField"] = $root.jspb.test.IsExtension.decode(reader, reader.uint32());
+                            break;
+                        }
+                    case 101: {
+                            message[".jspb.test.IndirectExtension.simple"] = $root.jspb.test.Simple1.decode(reader, reader.uint32());
+                            break;
+                        }
+                    case 102: {
+                            message[".jspb.test.IndirectExtension.str"] = reader.string();
+                            break;
+                        }
+                    case 103: {
+                            if (!(message[".jspb.test.IndirectExtension.repeatedStr"] && message[".jspb.test.IndirectExtension.repeatedStr"].length))
+                                message[".jspb.test.IndirectExtension.repeatedStr"] = [];
+                            message[".jspb.test.IndirectExtension.repeatedStr"].push(reader.string());
+                            break;
+                        }
+                    case 104: {
+                            if (!(message[".jspb.test.IndirectExtension.repeatedSimple"] && message[".jspb.test.IndirectExtension.repeatedSimple"].length))
+                                message[".jspb.test.IndirectExtension.repeatedSimple"] = [];
+                            message[".jspb.test.IndirectExtension.repeatedSimple"].push($root.jspb.test.Simple1.decode(reader, reader.uint32()));
+                            break;
+                        }
+                    case 105: {
+                            message[".jspb.test.simple1"] = $root.jspb.test.Simple1.decode(reader, reader.uint32());
+                            break;
+                        }
                     default:
                         reader.skipType(tag & 7);
                         break;
@@ -2313,25 +2344,30 @@ $root.jspb = (function() {
                 while (reader.pos < end) {
                     var tag = reader.uint32();
                     switch (tag >>> 3) {
-                    case 1:
-                        message.aString = reader.string();
-                        break;
-                    case 9:
-                        message.anOutOfOrderBool = reader.bool();
-                        break;
-                    case 4:
-                        message.aNestedMessage = $root.jspb.test.Complex.Nested.decode(reader, reader.uint32());
-                        break;
-                    case 5:
-                        if (!(message.aRepeatedMessage && message.aRepeatedMessage.length))
-                            message.aRepeatedMessage = [];
-                        message.aRepeatedMessage.push($root.jspb.test.Complex.Nested.decode(reader, reader.uint32()));
-                        break;
-                    case 7:
-                        if (!(message.aRepeatedString && message.aRepeatedString.length))
-                            message.aRepeatedString = [];
-                        message.aRepeatedString.push(reader.string());
-                        break;
+                    case 1: {
+                            message.aString = reader.string();
+                            break;
+                        }
+                    case 9: {
+                            message.anOutOfOrderBool = reader.bool();
+                            break;
+                        }
+                    case 4: {
+                            message.aNestedMessage = $root.jspb.test.Complex.Nested.decode(reader, reader.uint32());
+                            break;
+                        }
+                    case 5: {
+                            if (!(message.aRepeatedMessage && message.aRepeatedMessage.length))
+                                message.aRepeatedMessage = [];
+                            message.aRepeatedMessage.push($root.jspb.test.Complex.Nested.decode(reader, reader.uint32()));
+                            break;
+                        }
+                    case 7: {
+                            if (!(message.aRepeatedString && message.aRepeatedString.length))
+                                message.aRepeatedString = [];
+                            message.aRepeatedString.push(reader.string());
+                            break;
+                        }
                     default:
                         reader.skipType(tag & 7);
                         break;
@@ -2598,9 +2634,10 @@ $root.jspb = (function() {
                     while (reader.pos < end) {
                         var tag = reader.uint32();
                         switch (tag >>> 3) {
-                        case 2:
-                            message.anInt = reader.int32();
-                            break;
+                        case 2: {
+                                message.anInt = reader.int32();
+                                break;
+                            }
                         default:
                             reader.skipType(tag & 7);
                             break;
@@ -2976,9 +3013,10 @@ $root.jspb = (function() {
                     while (reader.pos < end) {
                         var tag = reader.uint32();
                         switch (tag >>> 3) {
-                        case 1:
-                            message.innerComplexField = reader.int32();
-                            break;
+                        case 1: {
+                                message.innerComplexField = reader.int32();
+                                break;
+                            }
                         default:
                             reader.skipType(tag & 7);
                             break;
@@ -3181,9 +3219,10 @@ $root.jspb = (function() {
                 while (reader.pos < end) {
                     var tag = reader.uint32();
                     switch (tag >>> 3) {
-                    case 1:
-                        message.ext1 = reader.string();
-                        break;
+                    case 1: {
+                            message.ext1 = reader.string();
+                            break;
+                        }
                     default:
                         reader.skipType(tag & 7);
                         break;
@@ -3613,24 +3652,30 @@ $root.jspb = (function() {
                 while (reader.pos < end) {
                     var tag = reader.uint32();
                     switch (tag >>> 3) {
-                    case 1:
-                        message.stringField = reader.string();
-                        break;
-                    case 2:
-                        message.boolField = reader.bool();
-                        break;
-                    case 3:
-                        message.intField = reader.int64();
-                        break;
-                    case 4:
-                        message.enumField = reader.int32();
-                        break;
-                    case 6:
-                        message.emptyField = reader.string();
-                        break;
-                    case 8:
-                        message.bytesField = reader.bytes();
-                        break;
+                    case 1: {
+                            message.stringField = reader.string();
+                            break;
+                        }
+                    case 2: {
+                            message.boolField = reader.bool();
+                            break;
+                        }
+                    case 3: {
+                            message.intField = reader.int64();
+                            break;
+                        }
+                    case 4: {
+                            message.enumField = reader.int32();
+                            break;
+                        }
+                    case 6: {
+                            message.emptyField = reader.string();
+                            break;
+                        }
+                    case 8: {
+                            message.bytesField = reader.bytes();
+                            break;
+                        }
                     default:
                         reader.skipType(tag & 7);
                         break;
@@ -3718,6 +3763,12 @@ $root.jspb = (function() {
                     else if (typeof object.intField === "object")
                         message.intField = new $util.LongBits(object.intField.low >>> 0, object.intField.high >>> 0).toNumber();
                 switch (object.enumField) {
+                default:
+                    if (typeof object.enumField === "number") {
+                        message.enumField = object.enumField;
+                        break;
+                    }
+                    break;
                 case "E1":
                 case 13:
                     message.enumField = 13;
@@ -3782,7 +3833,7 @@ $root.jspb = (function() {
                     else
                         object.intField = options.longs === String ? $util.Long.prototype.toString.call(message.intField) : options.longs === Number ? new $util.LongBits(message.intField.low >>> 0, message.intField.high >>> 0).toNumber() : message.intField;
                 if (message.enumField != null && message.hasOwnProperty("enumField"))
-                    object.enumField = options.enums === String ? $root.jspb.test.DefaultValues.Enum[message.enumField] : message.enumField;
+                    object.enumField = options.enums === String ? $root.jspb.test.DefaultValues.Enum[message.enumField] === undefined ? message.enumField : $root.jspb.test.DefaultValues.Enum[message.enumField] : message.enumField;
                 if (message.emptyField != null && message.hasOwnProperty("emptyField"))
                     object.emptyField = message.emptyField;
                 if (message.bytesField != null && message.hasOwnProperty("bytesField"))
@@ -4004,44 +4055,52 @@ $root.jspb = (function() {
                 while (reader.pos < end) {
                     var tag = reader.uint32();
                     switch (tag >>> 3) {
-                    case 1:
-                        message.optionalFloatField = reader.float();
-                        break;
-                    case 2:
-                        message.requiredFloatField = reader.float();
-                        break;
-                    case 3:
-                        if (!(message.repeatedFloatField && message.repeatedFloatField.length))
-                            message.repeatedFloatField = [];
-                        if ((tag & 7) === 2) {
-                            var end2 = reader.uint32() + reader.pos;
-                            while (reader.pos < end2)
+                    case 1: {
+                            message.optionalFloatField = reader.float();
+                            break;
+                        }
+                    case 2: {
+                            message.requiredFloatField = reader.float();
+                            break;
+                        }
+                    case 3: {
+                            if (!(message.repeatedFloatField && message.repeatedFloatField.length))
+                                message.repeatedFloatField = [];
+                            if ((tag & 7) === 2) {
+                                var end2 = reader.uint32() + reader.pos;
+                                while (reader.pos < end2)
+                                    message.repeatedFloatField.push(reader.float());
+                            } else
                                 message.repeatedFloatField.push(reader.float());
-                        } else
-                            message.repeatedFloatField.push(reader.float());
-                        break;
-                    case 4:
-                        message.defaultFloatField = reader.float();
-                        break;
-                    case 5:
-                        message.optionalDoubleField = reader.double();
-                        break;
-                    case 6:
-                        message.requiredDoubleField = reader.double();
-                        break;
-                    case 7:
-                        if (!(message.repeatedDoubleField && message.repeatedDoubleField.length))
-                            message.repeatedDoubleField = [];
-                        if ((tag & 7) === 2) {
-                            var end2 = reader.uint32() + reader.pos;
-                            while (reader.pos < end2)
+                            break;
+                        }
+                    case 4: {
+                            message.defaultFloatField = reader.float();
+                            break;
+                        }
+                    case 5: {
+                            message.optionalDoubleField = reader.double();
+                            break;
+                        }
+                    case 6: {
+                            message.requiredDoubleField = reader.double();
+                            break;
+                        }
+                    case 7: {
+                            if (!(message.repeatedDoubleField && message.repeatedDoubleField.length))
+                                message.repeatedDoubleField = [];
+                            if ((tag & 7) === 2) {
+                                var end2 = reader.uint32() + reader.pos;
+                                while (reader.pos < end2)
+                                    message.repeatedDoubleField.push(reader.double());
+                            } else
                                 message.repeatedDoubleField.push(reader.double());
-                        } else
-                            message.repeatedDoubleField.push(reader.double());
-                        break;
-                    case 8:
-                        message.defaultDoubleField = reader.double();
-                        break;
+                            break;
+                        }
+                    case 8: {
+                            message.defaultDoubleField = reader.double();
+                            break;
+                        }
                     default:
                         reader.skipType(tag & 7);
                         break;
@@ -4383,26 +4442,32 @@ $root.jspb = (function() {
                 while (reader.pos < end) {
                     var tag = reader.uint32();
                     switch (tag >>> 3) {
-                    case 1:
-                        message.str = reader.string();
-                        break;
-                    case 3:
-                        message.simple1 = $root.jspb.test.Simple1.decode(reader, reader.uint32());
-                        break;
-                    case 5:
-                        if (!(message.simple2 && message.simple2.length))
-                            message.simple2 = [];
-                        message.simple2.push($root.jspb.test.Simple1.decode(reader, reader.uint32()));
-                        break;
-                    case 6:
-                        message.bytesField = reader.bytes();
-                        break;
-                    case 7:
-                        message.unused = reader.string();
-                        break;
-                    case 100:
-                        message[".jspb.test.CloneExtension.extField"] = $root.jspb.test.CloneExtension.decode(reader, reader.uint32());
-                        break;
+                    case 1: {
+                            message.str = reader.string();
+                            break;
+                        }
+                    case 3: {
+                            message.simple1 = $root.jspb.test.Simple1.decode(reader, reader.uint32());
+                            break;
+                        }
+                    case 5: {
+                            if (!(message.simple2 && message.simple2.length))
+                                message.simple2 = [];
+                            message.simple2.push($root.jspb.test.Simple1.decode(reader, reader.uint32()));
+                            break;
+                        }
+                    case 6: {
+                            message.bytesField = reader.bytes();
+                            break;
+                        }
+                    case 7: {
+                            message.unused = reader.string();
+                            break;
+                        }
+                    case 100: {
+                            message[".jspb.test.CloneExtension.extField"] = $root.jspb.test.CloneExtension.decode(reader, reader.uint32());
+                            break;
+                        }
                     default:
                         reader.skipType(tag & 7);
                         break;
@@ -4680,9 +4745,10 @@ $root.jspb = (function() {
                 while (reader.pos < end) {
                     var tag = reader.uint32();
                     switch (tag >>> 3) {
-                    case 2:
-                        message.ext = reader.string();
-                        break;
+                    case 2: {
+                            message.ext = reader.string();
+                            break;
+                        }
                     default:
                         reader.skipType(tag & 7);
                         break;
@@ -4799,6 +4865,8 @@ $root.jspb = (function() {
              * @property {Array.<jspb.test.TestGroup.IRepeatedGroup>|null} [repeatedGroup] TestGroup repeatedGroup
              * @property {jspb.test.TestGroup.IRequiredGroup} requiredGroup TestGroup requiredGroup
              * @property {jspb.test.TestGroup.IOptionalGroup|null} [optionalGroup] TestGroup optionalGroup
+             * @property {jspb.test.TestGroup.IMessageInGroup|null} [messageInGroup] TestGroup messageInGroup
+             * @property {jspb.test.TestGroup.IEnumInGroup|null} [enumInGroup] TestGroup enumInGroup
              * @property {string|null} [id] TestGroup id
              * @property {jspb.test.ISimple2} requiredSimple TestGroup requiredSimple
              * @property {jspb.test.ISimple2|null} [optionalSimple] TestGroup optionalSimple
@@ -4843,6 +4911,22 @@ $root.jspb = (function() {
              * @instance
              */
             TestGroup.prototype.optionalGroup = null;
+
+            /**
+             * TestGroup messageInGroup.
+             * @member {jspb.test.TestGroup.IMessageInGroup|null|undefined} messageInGroup
+             * @memberof jspb.test.TestGroup
+             * @instance
+             */
+            TestGroup.prototype.messageInGroup = null;
+
+            /**
+             * TestGroup enumInGroup.
+             * @member {jspb.test.TestGroup.IEnumInGroup|null|undefined} enumInGroup
+             * @memberof jspb.test.TestGroup
+             * @instance
+             */
+            TestGroup.prototype.enumInGroup = null;
 
             /**
              * TestGroup id.
@@ -4898,11 +4982,15 @@ $root.jspb = (function() {
                 $root.jspb.test.TestGroup.RequiredGroup.encode(message.requiredGroup, writer.uint32(/* id 2, wireType 3 =*/19)).uint32(/* id 2, wireType 4 =*/20);
                 if (message.optionalGroup != null && Object.hasOwnProperty.call(message, "optionalGroup"))
                     $root.jspb.test.TestGroup.OptionalGroup.encode(message.optionalGroup, writer.uint32(/* id 3, wireType 3 =*/27)).uint32(/* id 3, wireType 4 =*/28);
+                if (message.messageInGroup != null && Object.hasOwnProperty.call(message, "messageInGroup"))
+                    $root.jspb.test.TestGroup.MessageInGroup.encode(message.messageInGroup, writer.uint32(/* id 4, wireType 3 =*/35)).uint32(/* id 4, wireType 4 =*/36);
+                if (message.enumInGroup != null && Object.hasOwnProperty.call(message, "enumInGroup"))
+                    $root.jspb.test.TestGroup.EnumInGroup.encode(message.enumInGroup, writer.uint32(/* id 5, wireType 3 =*/43)).uint32(/* id 5, wireType 4 =*/44);
                 if (message.id != null && Object.hasOwnProperty.call(message, "id"))
-                    writer.uint32(/* id 4, wireType 2 =*/34).string(message.id);
-                $root.jspb.test.Simple2.encode(message.requiredSimple, writer.uint32(/* id 5, wireType 2 =*/42).fork()).ldelim();
+                    writer.uint32(/* id 6, wireType 2 =*/50).string(message.id);
+                $root.jspb.test.Simple2.encode(message.requiredSimple, writer.uint32(/* id 7, wireType 2 =*/58).fork()).ldelim();
                 if (message.optionalSimple != null && Object.hasOwnProperty.call(message, "optionalSimple"))
-                    $root.jspb.test.Simple2.encode(message.optionalSimple, writer.uint32(/* id 6, wireType 2 =*/50).fork()).ldelim();
+                    $root.jspb.test.Simple2.encode(message.optionalSimple, writer.uint32(/* id 8, wireType 2 =*/66).fork()).ldelim();
                 return writer;
             };
 
@@ -4937,26 +5025,40 @@ $root.jspb = (function() {
                 while (reader.pos < end) {
                     var tag = reader.uint32();
                     switch (tag >>> 3) {
-                    case 1:
-                        if (!(message.repeatedGroup && message.repeatedGroup.length))
-                            message.repeatedGroup = [];
-                        message.repeatedGroup.push($root.jspb.test.TestGroup.RepeatedGroup.decode(reader));
-                        break;
-                    case 2:
-                        message.requiredGroup = $root.jspb.test.TestGroup.RequiredGroup.decode(reader);
-                        break;
-                    case 3:
-                        message.optionalGroup = $root.jspb.test.TestGroup.OptionalGroup.decode(reader);
-                        break;
-                    case 4:
-                        message.id = reader.string();
-                        break;
-                    case 5:
-                        message.requiredSimple = $root.jspb.test.Simple2.decode(reader, reader.uint32());
-                        break;
-                    case 6:
-                        message.optionalSimple = $root.jspb.test.Simple2.decode(reader, reader.uint32());
-                        break;
+                    case 1: {
+                            if (!(message.repeatedGroup && message.repeatedGroup.length))
+                                message.repeatedGroup = [];
+                            message.repeatedGroup.push($root.jspb.test.TestGroup.RepeatedGroup.decode(reader));
+                            break;
+                        }
+                    case 2: {
+                            message.requiredGroup = $root.jspb.test.TestGroup.RequiredGroup.decode(reader);
+                            break;
+                        }
+                    case 3: {
+                            message.optionalGroup = $root.jspb.test.TestGroup.OptionalGroup.decode(reader);
+                            break;
+                        }
+                    case 4: {
+                            message.messageInGroup = $root.jspb.test.TestGroup.MessageInGroup.decode(reader);
+                            break;
+                        }
+                    case 5: {
+                            message.enumInGroup = $root.jspb.test.TestGroup.EnumInGroup.decode(reader);
+                            break;
+                        }
+                    case 6: {
+                            message.id = reader.string();
+                            break;
+                        }
+                    case 7: {
+                            message.requiredSimple = $root.jspb.test.Simple2.decode(reader, reader.uint32());
+                            break;
+                        }
+                    case 8: {
+                            message.optionalSimple = $root.jspb.test.Simple2.decode(reader, reader.uint32());
+                            break;
+                        }
                     default:
                         reader.skipType(tag & 7);
                         break;
@@ -5015,6 +5117,16 @@ $root.jspb = (function() {
                     if (error)
                         return "optionalGroup." + error;
                 }
+                if (message.messageInGroup != null && message.hasOwnProperty("messageInGroup")) {
+                    var error = $root.jspb.test.TestGroup.MessageInGroup.verify(message.messageInGroup);
+                    if (error)
+                        return "messageInGroup." + error;
+                }
+                if (message.enumInGroup != null && message.hasOwnProperty("enumInGroup")) {
+                    var error = $root.jspb.test.TestGroup.EnumInGroup.verify(message.enumInGroup);
+                    if (error)
+                        return "enumInGroup." + error;
+                }
                 if (message.id != null && message.hasOwnProperty("id"))
                     if (!$util.isString(message.id))
                         return "id: string expected";
@@ -5063,6 +5175,16 @@ $root.jspb = (function() {
                         throw TypeError(".jspb.test.TestGroup.optionalGroup: object expected");
                     message.optionalGroup = $root.jspb.test.TestGroup.OptionalGroup.fromObject(object.optionalGroup);
                 }
+                if (object.messageInGroup != null) {
+                    if (typeof object.messageInGroup !== "object")
+                        throw TypeError(".jspb.test.TestGroup.messageInGroup: object expected");
+                    message.messageInGroup = $root.jspb.test.TestGroup.MessageInGroup.fromObject(object.messageInGroup);
+                }
+                if (object.enumInGroup != null) {
+                    if (typeof object.enumInGroup !== "object")
+                        throw TypeError(".jspb.test.TestGroup.enumInGroup: object expected");
+                    message.enumInGroup = $root.jspb.test.TestGroup.EnumInGroup.fromObject(object.enumInGroup);
+                }
                 if (object.id != null)
                     message.id = String(object.id);
                 if (object.requiredSimple != null) {
@@ -5096,6 +5218,8 @@ $root.jspb = (function() {
                 if (options.defaults) {
                     object.requiredGroup = null;
                     object.optionalGroup = null;
+                    object.messageInGroup = null;
+                    object.enumInGroup = null;
                     object.id = "";
                     object.requiredSimple = null;
                     object.optionalSimple = null;
@@ -5109,6 +5233,10 @@ $root.jspb = (function() {
                     object.requiredGroup = $root.jspb.test.TestGroup.RequiredGroup.toObject(message.requiredGroup, options);
                 if (message.optionalGroup != null && message.hasOwnProperty("optionalGroup"))
                     object.optionalGroup = $root.jspb.test.TestGroup.OptionalGroup.toObject(message.optionalGroup, options);
+                if (message.messageInGroup != null && message.hasOwnProperty("messageInGroup"))
+                    object.messageInGroup = $root.jspb.test.TestGroup.MessageInGroup.toObject(message.messageInGroup, options);
+                if (message.enumInGroup != null && message.hasOwnProperty("enumInGroup"))
+                    object.enumInGroup = $root.jspb.test.TestGroup.EnumInGroup.toObject(message.enumInGroup, options);
                 if (message.id != null && message.hasOwnProperty("id"))
                     object.id = message.id;
                 if (message.requiredSimple != null && message.hasOwnProperty("requiredSimple"))
@@ -5250,19 +5378,21 @@ $root.jspb = (function() {
                         if ((tag & 7) === 4)
                             break;
                         switch (tag >>> 3) {
-                        case 1:
-                            message.id = reader.string();
-                            break;
-                        case 2:
-                            if (!(message.someBool && message.someBool.length))
-                                message.someBool = [];
-                            if ((tag & 7) === 2) {
-                                var end2 = reader.uint32() + reader.pos;
-                                while (reader.pos < end2)
+                        case 1: {
+                                message.id = reader.string();
+                                break;
+                            }
+                        case 2: {
+                                if (!(message.someBool && message.someBool.length))
+                                    message.someBool = [];
+                                if ((tag & 7) === 2) {
+                                    var end2 = reader.uint32() + reader.pos;
+                                    while (reader.pos < end2)
+                                        message.someBool.push(reader.bool());
+                                } else
                                     message.someBool.push(reader.bool());
-                            } else
-                                message.someBool.push(reader.bool());
-                            break;
+                                break;
+                            }
                         default:
                             reader.skipType(tag & 7);
                             break;
@@ -5485,9 +5615,10 @@ $root.jspb = (function() {
                         if ((tag & 7) === 4)
                             break;
                         switch (tag >>> 3) {
-                        case 1:
-                            message.id = reader.string();
-                            break;
+                        case 1: {
+                                message.id = reader.string();
+                                break;
+                            }
                         default:
                             reader.skipType(tag & 7);
                             break;
@@ -5689,9 +5820,10 @@ $root.jspb = (function() {
                         if ((tag & 7) === 4)
                             break;
                         switch (tag >>> 3) {
-                        case 1:
-                            message.id = reader.string();
-                            break;
+                        case 1: {
+                                message.id = reader.string();
+                                break;
+                            }
                         default:
                             reader.skipType(tag & 7);
                             break;
@@ -5800,6 +5932,658 @@ $root.jspb = (function() {
                 return OptionalGroup;
             })();
 
+            TestGroup.MessageInGroup = (function() {
+
+                /**
+                 * Properties of a MessageInGroup.
+                 * @memberof jspb.test.TestGroup
+                 * @interface IMessageInGroup
+                 * @property {jspb.test.TestGroup.MessageInGroup.INestedMessage} id MessageInGroup id
+                 */
+
+                /**
+                 * Constructs a new MessageInGroup.
+                 * @memberof jspb.test.TestGroup
+                 * @classdesc Represents a MessageInGroup.
+                 * @implements IMessageInGroup
+                 * @constructor
+                 * @param {jspb.test.TestGroup.IMessageInGroup=} [properties] Properties to set
+                 */
+                function MessageInGroup(properties) {
+                    if (properties)
+                        for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                            if (properties[keys[i]] != null)
+                                this[keys[i]] = properties[keys[i]];
+                }
+
+                /**
+                 * MessageInGroup id.
+                 * @member {jspb.test.TestGroup.MessageInGroup.INestedMessage} id
+                 * @memberof jspb.test.TestGroup.MessageInGroup
+                 * @instance
+                 */
+                MessageInGroup.prototype.id = null;
+
+                /**
+                 * Creates a new MessageInGroup instance using the specified properties.
+                 * @function create
+                 * @memberof jspb.test.TestGroup.MessageInGroup
+                 * @static
+                 * @param {jspb.test.TestGroup.IMessageInGroup=} [properties] Properties to set
+                 * @returns {jspb.test.TestGroup.MessageInGroup} MessageInGroup instance
+                 */
+                MessageInGroup.create = function create(properties) {
+                    return new MessageInGroup(properties);
+                };
+
+                /**
+                 * Encodes the specified MessageInGroup message. Does not implicitly {@link jspb.test.TestGroup.MessageInGroup.verify|verify} messages.
+                 * @function encode
+                 * @memberof jspb.test.TestGroup.MessageInGroup
+                 * @static
+                 * @param {jspb.test.TestGroup.IMessageInGroup} message MessageInGroup message or plain object to encode
+                 * @param {$protobuf.Writer} [writer] Writer to encode to
+                 * @returns {$protobuf.Writer} Writer
+                 */
+                MessageInGroup.encode = function encode(message, writer) {
+                    if (!writer)
+                        writer = $Writer.create();
+                    $root.jspb.test.TestGroup.MessageInGroup.NestedMessage.encode(message.id, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+                    return writer;
+                };
+
+                /**
+                 * Encodes the specified MessageInGroup message, length delimited. Does not implicitly {@link jspb.test.TestGroup.MessageInGroup.verify|verify} messages.
+                 * @function encodeDelimited
+                 * @memberof jspb.test.TestGroup.MessageInGroup
+                 * @static
+                 * @param {jspb.test.TestGroup.IMessageInGroup} message MessageInGroup message or plain object to encode
+                 * @param {$protobuf.Writer} [writer] Writer to encode to
+                 * @returns {$protobuf.Writer} Writer
+                 */
+                MessageInGroup.encodeDelimited = function encodeDelimited(message, writer) {
+                    return this.encode(message, writer).ldelim();
+                };
+
+                /**
+                 * Decodes a MessageInGroup message from the specified reader or buffer.
+                 * @function decode
+                 * @memberof jspb.test.TestGroup.MessageInGroup
+                 * @static
+                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                 * @param {number} [length] Message length if known beforehand
+                 * @returns {jspb.test.TestGroup.MessageInGroup} MessageInGroup
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                MessageInGroup.decode = function decode(reader, length) {
+                    if (!(reader instanceof $Reader))
+                        reader = $Reader.create(reader);
+                    var end = length === undefined ? reader.len : reader.pos + length, message = new $root.jspb.test.TestGroup.MessageInGroup();
+                    while (reader.pos < end) {
+                        var tag = reader.uint32();
+                        if ((tag & 7) === 4)
+                            break;
+                        switch (tag >>> 3) {
+                        case 1: {
+                                message.id = $root.jspb.test.TestGroup.MessageInGroup.NestedMessage.decode(reader, reader.uint32());
+                                break;
+                            }
+                        default:
+                            reader.skipType(tag & 7);
+                            break;
+                        }
+                    }
+                    if (!message.hasOwnProperty("id"))
+                        throw $util.ProtocolError("missing required 'id'", { instance: message });
+                    return message;
+                };
+
+                /**
+                 * Decodes a MessageInGroup message from the specified reader or buffer, length delimited.
+                 * @function decodeDelimited
+                 * @memberof jspb.test.TestGroup.MessageInGroup
+                 * @static
+                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                 * @returns {jspb.test.TestGroup.MessageInGroup} MessageInGroup
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                MessageInGroup.decodeDelimited = function decodeDelimited(reader) {
+                    if (!(reader instanceof $Reader))
+                        reader = new $Reader(reader);
+                    return this.decode(reader, reader.uint32());
+                };
+
+                /**
+                 * Verifies a MessageInGroup message.
+                 * @function verify
+                 * @memberof jspb.test.TestGroup.MessageInGroup
+                 * @static
+                 * @param {Object.<string,*>} message Plain object to verify
+                 * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                 */
+                MessageInGroup.verify = function verify(message) {
+                    if (typeof message !== "object" || message === null)
+                        return "object expected";
+                    {
+                        var error = $root.jspb.test.TestGroup.MessageInGroup.NestedMessage.verify(message.id);
+                        if (error)
+                            return "id." + error;
+                    }
+                    return null;
+                };
+
+                /**
+                 * Creates a MessageInGroup message from a plain object. Also converts values to their respective internal types.
+                 * @function fromObject
+                 * @memberof jspb.test.TestGroup.MessageInGroup
+                 * @static
+                 * @param {Object.<string,*>} object Plain object
+                 * @returns {jspb.test.TestGroup.MessageInGroup} MessageInGroup
+                 */
+                MessageInGroup.fromObject = function fromObject(object) {
+                    if (object instanceof $root.jspb.test.TestGroup.MessageInGroup)
+                        return object;
+                    var message = new $root.jspb.test.TestGroup.MessageInGroup();
+                    if (object.id != null) {
+                        if (typeof object.id !== "object")
+                            throw TypeError(".jspb.test.TestGroup.MessageInGroup.id: object expected");
+                        message.id = $root.jspb.test.TestGroup.MessageInGroup.NestedMessage.fromObject(object.id);
+                    }
+                    return message;
+                };
+
+                /**
+                 * Creates a plain object from a MessageInGroup message. Also converts values to other types if specified.
+                 * @function toObject
+                 * @memberof jspb.test.TestGroup.MessageInGroup
+                 * @static
+                 * @param {jspb.test.TestGroup.MessageInGroup} message MessageInGroup
+                 * @param {$protobuf.IConversionOptions} [options] Conversion options
+                 * @returns {Object.<string,*>} Plain object
+                 */
+                MessageInGroup.toObject = function toObject(message, options) {
+                    if (!options)
+                        options = {};
+                    var object = {};
+                    if (options.defaults)
+                        object.id = null;
+                    if (message.id != null && message.hasOwnProperty("id"))
+                        object.id = $root.jspb.test.TestGroup.MessageInGroup.NestedMessage.toObject(message.id, options);
+                    return object;
+                };
+
+                /**
+                 * Converts this MessageInGroup to JSON.
+                 * @function toJSON
+                 * @memberof jspb.test.TestGroup.MessageInGroup
+                 * @instance
+                 * @returns {Object.<string,*>} JSON object
+                 */
+                MessageInGroup.prototype.toJSON = function toJSON() {
+                    return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                };
+
+                /**
+                 * Gets the default type url for MessageInGroup
+                 * @function getTypeUrl
+                 * @memberof jspb.test.TestGroup.MessageInGroup
+                 * @static
+                 * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                 * @returns {string} The default type url
+                 */
+                MessageInGroup.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                    if (typeUrlPrefix === undefined) {
+                        typeUrlPrefix = "type.googleapis.com";
+                    }
+                    return typeUrlPrefix + "/jspb.test.TestGroup.MessageInGroup";
+                };
+
+                MessageInGroup.NestedMessage = (function() {
+
+                    /**
+                     * Properties of a NestedMessage.
+                     * @memberof jspb.test.TestGroup.MessageInGroup
+                     * @interface INestedMessage
+                     * @property {string|null} [id] NestedMessage id
+                     */
+
+                    /**
+                     * Constructs a new NestedMessage.
+                     * @memberof jspb.test.TestGroup.MessageInGroup
+                     * @classdesc Represents a NestedMessage.
+                     * @implements INestedMessage
+                     * @constructor
+                     * @param {jspb.test.TestGroup.MessageInGroup.INestedMessage=} [properties] Properties to set
+                     */
+                    function NestedMessage(properties) {
+                        if (properties)
+                            for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                if (properties[keys[i]] != null)
+                                    this[keys[i]] = properties[keys[i]];
+                    }
+
+                    /**
+                     * NestedMessage id.
+                     * @member {string} id
+                     * @memberof jspb.test.TestGroup.MessageInGroup.NestedMessage
+                     * @instance
+                     */
+                    NestedMessage.prototype.id = "";
+
+                    /**
+                     * Creates a new NestedMessage instance using the specified properties.
+                     * @function create
+                     * @memberof jspb.test.TestGroup.MessageInGroup.NestedMessage
+                     * @static
+                     * @param {jspb.test.TestGroup.MessageInGroup.INestedMessage=} [properties] Properties to set
+                     * @returns {jspb.test.TestGroup.MessageInGroup.NestedMessage} NestedMessage instance
+                     */
+                    NestedMessage.create = function create(properties) {
+                        return new NestedMessage(properties);
+                    };
+
+                    /**
+                     * Encodes the specified NestedMessage message. Does not implicitly {@link jspb.test.TestGroup.MessageInGroup.NestedMessage.verify|verify} messages.
+                     * @function encode
+                     * @memberof jspb.test.TestGroup.MessageInGroup.NestedMessage
+                     * @static
+                     * @param {jspb.test.TestGroup.MessageInGroup.INestedMessage} message NestedMessage message or plain object to encode
+                     * @param {$protobuf.Writer} [writer] Writer to encode to
+                     * @returns {$protobuf.Writer} Writer
+                     */
+                    NestedMessage.encode = function encode(message, writer) {
+                        if (!writer)
+                            writer = $Writer.create();
+                        if (message.id != null && Object.hasOwnProperty.call(message, "id"))
+                            writer.uint32(/* id 1, wireType 2 =*/10).string(message.id);
+                        return writer;
+                    };
+
+                    /**
+                     * Encodes the specified NestedMessage message, length delimited. Does not implicitly {@link jspb.test.TestGroup.MessageInGroup.NestedMessage.verify|verify} messages.
+                     * @function encodeDelimited
+                     * @memberof jspb.test.TestGroup.MessageInGroup.NestedMessage
+                     * @static
+                     * @param {jspb.test.TestGroup.MessageInGroup.INestedMessage} message NestedMessage message or plain object to encode
+                     * @param {$protobuf.Writer} [writer] Writer to encode to
+                     * @returns {$protobuf.Writer} Writer
+                     */
+                    NestedMessage.encodeDelimited = function encodeDelimited(message, writer) {
+                        return this.encode(message, writer).ldelim();
+                    };
+
+                    /**
+                     * Decodes a NestedMessage message from the specified reader or buffer.
+                     * @function decode
+                     * @memberof jspb.test.TestGroup.MessageInGroup.NestedMessage
+                     * @static
+                     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                     * @param {number} [length] Message length if known beforehand
+                     * @returns {jspb.test.TestGroup.MessageInGroup.NestedMessage} NestedMessage
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    NestedMessage.decode = function decode(reader, length) {
+                        if (!(reader instanceof $Reader))
+                            reader = $Reader.create(reader);
+                        var end = length === undefined ? reader.len : reader.pos + length, message = new $root.jspb.test.TestGroup.MessageInGroup.NestedMessage();
+                        while (reader.pos < end) {
+                            var tag = reader.uint32();
+                            switch (tag >>> 3) {
+                            case 1: {
+                                    message.id = reader.string();
+                                    break;
+                                }
+                            default:
+                                reader.skipType(tag & 7);
+                                break;
+                            }
+                        }
+                        return message;
+                    };
+
+                    /**
+                     * Decodes a NestedMessage message from the specified reader or buffer, length delimited.
+                     * @function decodeDelimited
+                     * @memberof jspb.test.TestGroup.MessageInGroup.NestedMessage
+                     * @static
+                     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                     * @returns {jspb.test.TestGroup.MessageInGroup.NestedMessage} NestedMessage
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    NestedMessage.decodeDelimited = function decodeDelimited(reader) {
+                        if (!(reader instanceof $Reader))
+                            reader = new $Reader(reader);
+                        return this.decode(reader, reader.uint32());
+                    };
+
+                    /**
+                     * Verifies a NestedMessage message.
+                     * @function verify
+                     * @memberof jspb.test.TestGroup.MessageInGroup.NestedMessage
+                     * @static
+                     * @param {Object.<string,*>} message Plain object to verify
+                     * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                     */
+                    NestedMessage.verify = function verify(message) {
+                        if (typeof message !== "object" || message === null)
+                            return "object expected";
+                        if (message.id != null && message.hasOwnProperty("id"))
+                            if (!$util.isString(message.id))
+                                return "id: string expected";
+                        return null;
+                    };
+
+                    /**
+                     * Creates a NestedMessage message from a plain object. Also converts values to their respective internal types.
+                     * @function fromObject
+                     * @memberof jspb.test.TestGroup.MessageInGroup.NestedMessage
+                     * @static
+                     * @param {Object.<string,*>} object Plain object
+                     * @returns {jspb.test.TestGroup.MessageInGroup.NestedMessage} NestedMessage
+                     */
+                    NestedMessage.fromObject = function fromObject(object) {
+                        if (object instanceof $root.jspb.test.TestGroup.MessageInGroup.NestedMessage)
+                            return object;
+                        var message = new $root.jspb.test.TestGroup.MessageInGroup.NestedMessage();
+                        if (object.id != null)
+                            message.id = String(object.id);
+                        return message;
+                    };
+
+                    /**
+                     * Creates a plain object from a NestedMessage message. Also converts values to other types if specified.
+                     * @function toObject
+                     * @memberof jspb.test.TestGroup.MessageInGroup.NestedMessage
+                     * @static
+                     * @param {jspb.test.TestGroup.MessageInGroup.NestedMessage} message NestedMessage
+                     * @param {$protobuf.IConversionOptions} [options] Conversion options
+                     * @returns {Object.<string,*>} Plain object
+                     */
+                    NestedMessage.toObject = function toObject(message, options) {
+                        if (!options)
+                            options = {};
+                        var object = {};
+                        if (options.defaults)
+                            object.id = "";
+                        if (message.id != null && message.hasOwnProperty("id"))
+                            object.id = message.id;
+                        return object;
+                    };
+
+                    /**
+                     * Converts this NestedMessage to JSON.
+                     * @function toJSON
+                     * @memberof jspb.test.TestGroup.MessageInGroup.NestedMessage
+                     * @instance
+                     * @returns {Object.<string,*>} JSON object
+                     */
+                    NestedMessage.prototype.toJSON = function toJSON() {
+                        return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                    };
+
+                    /**
+                     * Gets the default type url for NestedMessage
+                     * @function getTypeUrl
+                     * @memberof jspb.test.TestGroup.MessageInGroup.NestedMessage
+                     * @static
+                     * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                     * @returns {string} The default type url
+                     */
+                    NestedMessage.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                        if (typeUrlPrefix === undefined) {
+                            typeUrlPrefix = "type.googleapis.com";
+                        }
+                        return typeUrlPrefix + "/jspb.test.TestGroup.MessageInGroup.NestedMessage";
+                    };
+
+                    return NestedMessage;
+                })();
+
+                return MessageInGroup;
+            })();
+
+            TestGroup.EnumInGroup = (function() {
+
+                /**
+                 * Properties of an EnumInGroup.
+                 * @memberof jspb.test.TestGroup
+                 * @interface IEnumInGroup
+                 * @property {jspb.test.TestGroup.EnumInGroup.NestedEnum} id EnumInGroup id
+                 */
+
+                /**
+                 * Constructs a new EnumInGroup.
+                 * @memberof jspb.test.TestGroup
+                 * @classdesc Represents an EnumInGroup.
+                 * @implements IEnumInGroup
+                 * @constructor
+                 * @param {jspb.test.TestGroup.IEnumInGroup=} [properties] Properties to set
+                 */
+                function EnumInGroup(properties) {
+                    if (properties)
+                        for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                            if (properties[keys[i]] != null)
+                                this[keys[i]] = properties[keys[i]];
+                }
+
+                /**
+                 * EnumInGroup id.
+                 * @member {jspb.test.TestGroup.EnumInGroup.NestedEnum} id
+                 * @memberof jspb.test.TestGroup.EnumInGroup
+                 * @instance
+                 */
+                EnumInGroup.prototype.id = 0;
+
+                /**
+                 * Creates a new EnumInGroup instance using the specified properties.
+                 * @function create
+                 * @memberof jspb.test.TestGroup.EnumInGroup
+                 * @static
+                 * @param {jspb.test.TestGroup.IEnumInGroup=} [properties] Properties to set
+                 * @returns {jspb.test.TestGroup.EnumInGroup} EnumInGroup instance
+                 */
+                EnumInGroup.create = function create(properties) {
+                    return new EnumInGroup(properties);
+                };
+
+                /**
+                 * Encodes the specified EnumInGroup message. Does not implicitly {@link jspb.test.TestGroup.EnumInGroup.verify|verify} messages.
+                 * @function encode
+                 * @memberof jspb.test.TestGroup.EnumInGroup
+                 * @static
+                 * @param {jspb.test.TestGroup.IEnumInGroup} message EnumInGroup message or plain object to encode
+                 * @param {$protobuf.Writer} [writer] Writer to encode to
+                 * @returns {$protobuf.Writer} Writer
+                 */
+                EnumInGroup.encode = function encode(message, writer) {
+                    if (!writer)
+                        writer = $Writer.create();
+                    writer.uint32(/* id 1, wireType 0 =*/8).int32(message.id);
+                    return writer;
+                };
+
+                /**
+                 * Encodes the specified EnumInGroup message, length delimited. Does not implicitly {@link jspb.test.TestGroup.EnumInGroup.verify|verify} messages.
+                 * @function encodeDelimited
+                 * @memberof jspb.test.TestGroup.EnumInGroup
+                 * @static
+                 * @param {jspb.test.TestGroup.IEnumInGroup} message EnumInGroup message or plain object to encode
+                 * @param {$protobuf.Writer} [writer] Writer to encode to
+                 * @returns {$protobuf.Writer} Writer
+                 */
+                EnumInGroup.encodeDelimited = function encodeDelimited(message, writer) {
+                    return this.encode(message, writer).ldelim();
+                };
+
+                /**
+                 * Decodes an EnumInGroup message from the specified reader or buffer.
+                 * @function decode
+                 * @memberof jspb.test.TestGroup.EnumInGroup
+                 * @static
+                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                 * @param {number} [length] Message length if known beforehand
+                 * @returns {jspb.test.TestGroup.EnumInGroup} EnumInGroup
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                EnumInGroup.decode = function decode(reader, length) {
+                    if (!(reader instanceof $Reader))
+                        reader = $Reader.create(reader);
+                    var end = length === undefined ? reader.len : reader.pos + length, message = new $root.jspb.test.TestGroup.EnumInGroup();
+                    while (reader.pos < end) {
+                        var tag = reader.uint32();
+                        if ((tag & 7) === 4)
+                            break;
+                        switch (tag >>> 3) {
+                        case 1: {
+                                message.id = reader.int32();
+                                break;
+                            }
+                        default:
+                            reader.skipType(tag & 7);
+                            break;
+                        }
+                    }
+                    if (!message.hasOwnProperty("id"))
+                        throw $util.ProtocolError("missing required 'id'", { instance: message });
+                    return message;
+                };
+
+                /**
+                 * Decodes an EnumInGroup message from the specified reader or buffer, length delimited.
+                 * @function decodeDelimited
+                 * @memberof jspb.test.TestGroup.EnumInGroup
+                 * @static
+                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                 * @returns {jspb.test.TestGroup.EnumInGroup} EnumInGroup
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                EnumInGroup.decodeDelimited = function decodeDelimited(reader) {
+                    if (!(reader instanceof $Reader))
+                        reader = new $Reader(reader);
+                    return this.decode(reader, reader.uint32());
+                };
+
+                /**
+                 * Verifies an EnumInGroup message.
+                 * @function verify
+                 * @memberof jspb.test.TestGroup.EnumInGroup
+                 * @static
+                 * @param {Object.<string,*>} message Plain object to verify
+                 * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                 */
+                EnumInGroup.verify = function verify(message) {
+                    if (typeof message !== "object" || message === null)
+                        return "object expected";
+                    switch (message.id) {
+                    default:
+                        return "id: enum value expected";
+                    case 0:
+                    case 1:
+                        break;
+                    }
+                    return null;
+                };
+
+                /**
+                 * Creates an EnumInGroup message from a plain object. Also converts values to their respective internal types.
+                 * @function fromObject
+                 * @memberof jspb.test.TestGroup.EnumInGroup
+                 * @static
+                 * @param {Object.<string,*>} object Plain object
+                 * @returns {jspb.test.TestGroup.EnumInGroup} EnumInGroup
+                 */
+                EnumInGroup.fromObject = function fromObject(object) {
+                    if (object instanceof $root.jspb.test.TestGroup.EnumInGroup)
+                        return object;
+                    var message = new $root.jspb.test.TestGroup.EnumInGroup();
+                    switch (object.id) {
+                    default:
+                        if (typeof object.id === "number") {
+                            message.id = object.id;
+                            break;
+                        }
+                        break;
+                    case "first":
+                    case 0:
+                        message.id = 0;
+                        break;
+                    case "second":
+                    case 1:
+                        message.id = 1;
+                        break;
+                    }
+                    return message;
+                };
+
+                /**
+                 * Creates a plain object from an EnumInGroup message. Also converts values to other types if specified.
+                 * @function toObject
+                 * @memberof jspb.test.TestGroup.EnumInGroup
+                 * @static
+                 * @param {jspb.test.TestGroup.EnumInGroup} message EnumInGroup
+                 * @param {$protobuf.IConversionOptions} [options] Conversion options
+                 * @returns {Object.<string,*>} Plain object
+                 */
+                EnumInGroup.toObject = function toObject(message, options) {
+                    if (!options)
+                        options = {};
+                    var object = {};
+                    if (options.defaults)
+                        object.id = options.enums === String ? "first" : 0;
+                    if (message.id != null && message.hasOwnProperty("id"))
+                        object.id = options.enums === String ? $root.jspb.test.TestGroup.EnumInGroup.NestedEnum[message.id] === undefined ? message.id : $root.jspb.test.TestGroup.EnumInGroup.NestedEnum[message.id] : message.id;
+                    return object;
+                };
+
+                /**
+                 * Converts this EnumInGroup to JSON.
+                 * @function toJSON
+                 * @memberof jspb.test.TestGroup.EnumInGroup
+                 * @instance
+                 * @returns {Object.<string,*>} JSON object
+                 */
+                EnumInGroup.prototype.toJSON = function toJSON() {
+                    return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                };
+
+                /**
+                 * Gets the default type url for EnumInGroup
+                 * @function getTypeUrl
+                 * @memberof jspb.test.TestGroup.EnumInGroup
+                 * @static
+                 * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                 * @returns {string} The default type url
+                 */
+                EnumInGroup.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                    if (typeUrlPrefix === undefined) {
+                        typeUrlPrefix = "type.googleapis.com";
+                    }
+                    return typeUrlPrefix + "/jspb.test.TestGroup.EnumInGroup";
+                };
+
+                /**
+                 * NestedEnum enum.
+                 * @name jspb.test.TestGroup.EnumInGroup.NestedEnum
+                 * @enum {number}
+                 * @property {number} first=0 first value
+                 * @property {number} second=1 second value
+                 */
+                EnumInGroup.NestedEnum = (function() {
+                    var valuesById = {}, values = Object.create(valuesById);
+                    values[valuesById[0] = "first"] = 0;
+                    values[valuesById[1] = "second"] = 1;
+                    return values;
+                })();
+
+                return EnumInGroup;
+            })();
+
             return TestGroup;
         })();
 
@@ -5895,9 +6679,10 @@ $root.jspb = (function() {
                 while (reader.pos < end) {
                     var tag = reader.uint32();
                     switch (tag >>> 3) {
-                    case 1:
-                        message.group = $root.jspb.test.TestGroup.RepeatedGroup.decode(reader);
-                        break;
+                    case 1: {
+                            message.group = $root.jspb.test.TestGroup.RepeatedGroup.decode(reader);
+                            break;
+                        }
                     default:
                         reader.skipType(tag & 7);
                         break;
@@ -6113,12 +6898,14 @@ $root.jspb = (function() {
                 while (reader.pos < end) {
                     var tag = reader.uint32();
                     switch (tag >>> 3) {
-                    case 1:
-                        message.extension = reader.int32();
-                        break;
-                    case 10:
-                        message[".jspb.test.TestReservedNamesExtension.foo"] = reader.int32();
-                        break;
+                    case 1: {
+                            message.extension = reader.int32();
+                            break;
+                        }
+                    case 10: {
+                            message[".jspb.test.TestReservedNamesExtension.foo"] = reader.int32();
+                            break;
+                        }
                     default:
                         reader.skipType(tag & 7);
                         break;
@@ -6650,38 +7437,48 @@ $root.jspb = (function() {
                 while (reader.pos < end) {
                     var tag = reader.uint32();
                     switch (tag >>> 3) {
-                    case 3:
-                        message.pone = reader.string();
-                        break;
-                    case 5:
-                        message.pthree = reader.string();
-                        break;
-                    case 6:
-                        message.rone = $root.jspb.test.TestMessageWithOneof.decode(reader, reader.uint32());
-                        break;
-                    case 7:
-                        message.rtwo = reader.string();
-                        break;
-                    case 8:
-                        message.normalField = reader.bool();
-                        break;
-                    case 9:
-                        if (!(message.repeatedField && message.repeatedField.length))
-                            message.repeatedField = [];
-                        message.repeatedField.push(reader.string());
-                        break;
-                    case 10:
-                        message.aone = reader.int32();
-                        break;
-                    case 11:
-                        message.atwo = reader.int32();
-                        break;
-                    case 12:
-                        message.bone = reader.int32();
-                        break;
-                    case 13:
-                        message.btwo = reader.int32();
-                        break;
+                    case 3: {
+                            message.pone = reader.string();
+                            break;
+                        }
+                    case 5: {
+                            message.pthree = reader.string();
+                            break;
+                        }
+                    case 6: {
+                            message.rone = $root.jspb.test.TestMessageWithOneof.decode(reader, reader.uint32());
+                            break;
+                        }
+                    case 7: {
+                            message.rtwo = reader.string();
+                            break;
+                        }
+                    case 8: {
+                            message.normalField = reader.bool();
+                            break;
+                        }
+                    case 9: {
+                            if (!(message.repeatedField && message.repeatedField.length))
+                                message.repeatedField = [];
+                            message.repeatedField.push(reader.string());
+                            break;
+                        }
+                    case 10: {
+                            message.aone = reader.int32();
+                            break;
+                        }
+                    case 11: {
+                            message.atwo = reader.int32();
+                            break;
+                        }
+                    case 12: {
+                            message.bone = reader.int32();
+                            break;
+                        }
+                    case 13: {
+                            message.btwo = reader.int32();
+                            break;
+                        }
                     default:
                         reader.skipType(tag & 7);
                         break;
@@ -7024,12 +7821,14 @@ $root.jspb = (function() {
                 while (reader.pos < end) {
                     var tag = reader.uint32();
                     switch (tag >>> 3) {
-                    case 1:
-                        message.value = reader.int32();
-                        break;
-                    case 2:
-                        message.data = reader.bytes();
-                        break;
+                    case 1: {
+                            message.value = reader.int32();
+                            break;
+                        }
+                    case 2: {
+                            message.data = reader.bytes();
+                            break;
+                        }
                     default:
                         reader.skipType(tag & 7);
                         break;
@@ -7394,251 +8193,263 @@ $root.jspb = (function() {
                 while (reader.pos < end) {
                     var tag = reader.uint32();
                     switch (tag >>> 3) {
-                    case 1:
-                        if (message.mapStringString === $util.emptyObject)
-                            message.mapStringString = {};
-                        var end2 = reader.uint32() + reader.pos;
-                        key = "";
-                        value = "";
-                        while (reader.pos < end2) {
-                            var tag2 = reader.uint32();
-                            switch (tag2 >>> 3) {
-                            case 1:
-                                key = reader.string();
-                                break;
-                            case 2:
-                                value = reader.string();
-                                break;
-                            default:
-                                reader.skipType(tag2 & 7);
-                                break;
+                    case 1: {
+                            if (message.mapStringString === $util.emptyObject)
+                                message.mapStringString = {};
+                            var end2 = reader.uint32() + reader.pos;
+                            key = "";
+                            value = "";
+                            while (reader.pos < end2) {
+                                var tag2 = reader.uint32();
+                                switch (tag2 >>> 3) {
+                                case 1:
+                                    key = reader.string();
+                                    break;
+                                case 2:
+                                    value = reader.string();
+                                    break;
+                                default:
+                                    reader.skipType(tag2 & 7);
+                                    break;
+                                }
                             }
+                            message.mapStringString[key] = value;
+                            break;
                         }
-                        message.mapStringString[key] = value;
-                        break;
-                    case 2:
-                        if (message.mapStringInt32 === $util.emptyObject)
-                            message.mapStringInt32 = {};
-                        var end2 = reader.uint32() + reader.pos;
-                        key = "";
-                        value = 0;
-                        while (reader.pos < end2) {
-                            var tag2 = reader.uint32();
-                            switch (tag2 >>> 3) {
-                            case 1:
-                                key = reader.string();
-                                break;
-                            case 2:
-                                value = reader.int32();
-                                break;
-                            default:
-                                reader.skipType(tag2 & 7);
-                                break;
+                    case 2: {
+                            if (message.mapStringInt32 === $util.emptyObject)
+                                message.mapStringInt32 = {};
+                            var end2 = reader.uint32() + reader.pos;
+                            key = "";
+                            value = 0;
+                            while (reader.pos < end2) {
+                                var tag2 = reader.uint32();
+                                switch (tag2 >>> 3) {
+                                case 1:
+                                    key = reader.string();
+                                    break;
+                                case 2:
+                                    value = reader.int32();
+                                    break;
+                                default:
+                                    reader.skipType(tag2 & 7);
+                                    break;
+                                }
                             }
+                            message.mapStringInt32[key] = value;
+                            break;
                         }
-                        message.mapStringInt32[key] = value;
-                        break;
-                    case 3:
-                        if (message.mapStringInt64 === $util.emptyObject)
-                            message.mapStringInt64 = {};
-                        var end2 = reader.uint32() + reader.pos;
-                        key = "";
-                        value = 0;
-                        while (reader.pos < end2) {
-                            var tag2 = reader.uint32();
-                            switch (tag2 >>> 3) {
-                            case 1:
-                                key = reader.string();
-                                break;
-                            case 2:
-                                value = reader.int64();
-                                break;
-                            default:
-                                reader.skipType(tag2 & 7);
-                                break;
+                    case 3: {
+                            if (message.mapStringInt64 === $util.emptyObject)
+                                message.mapStringInt64 = {};
+                            var end2 = reader.uint32() + reader.pos;
+                            key = "";
+                            value = 0;
+                            while (reader.pos < end2) {
+                                var tag2 = reader.uint32();
+                                switch (tag2 >>> 3) {
+                                case 1:
+                                    key = reader.string();
+                                    break;
+                                case 2:
+                                    value = reader.int64();
+                                    break;
+                                default:
+                                    reader.skipType(tag2 & 7);
+                                    break;
+                                }
                             }
+                            message.mapStringInt64[key] = value;
+                            break;
                         }
-                        message.mapStringInt64[key] = value;
-                        break;
-                    case 4:
-                        if (message.mapStringBool === $util.emptyObject)
-                            message.mapStringBool = {};
-                        var end2 = reader.uint32() + reader.pos;
-                        key = "";
-                        value = false;
-                        while (reader.pos < end2) {
-                            var tag2 = reader.uint32();
-                            switch (tag2 >>> 3) {
-                            case 1:
-                                key = reader.string();
-                                break;
-                            case 2:
-                                value = reader.bool();
-                                break;
-                            default:
-                                reader.skipType(tag2 & 7);
-                                break;
+                    case 4: {
+                            if (message.mapStringBool === $util.emptyObject)
+                                message.mapStringBool = {};
+                            var end2 = reader.uint32() + reader.pos;
+                            key = "";
+                            value = false;
+                            while (reader.pos < end2) {
+                                var tag2 = reader.uint32();
+                                switch (tag2 >>> 3) {
+                                case 1:
+                                    key = reader.string();
+                                    break;
+                                case 2:
+                                    value = reader.bool();
+                                    break;
+                                default:
+                                    reader.skipType(tag2 & 7);
+                                    break;
+                                }
                             }
+                            message.mapStringBool[key] = value;
+                            break;
                         }
-                        message.mapStringBool[key] = value;
-                        break;
-                    case 5:
-                        if (message.mapStringDouble === $util.emptyObject)
-                            message.mapStringDouble = {};
-                        var end2 = reader.uint32() + reader.pos;
-                        key = "";
-                        value = 0;
-                        while (reader.pos < end2) {
-                            var tag2 = reader.uint32();
-                            switch (tag2 >>> 3) {
-                            case 1:
-                                key = reader.string();
-                                break;
-                            case 2:
-                                value = reader.double();
-                                break;
-                            default:
-                                reader.skipType(tag2 & 7);
-                                break;
+                    case 5: {
+                            if (message.mapStringDouble === $util.emptyObject)
+                                message.mapStringDouble = {};
+                            var end2 = reader.uint32() + reader.pos;
+                            key = "";
+                            value = 0;
+                            while (reader.pos < end2) {
+                                var tag2 = reader.uint32();
+                                switch (tag2 >>> 3) {
+                                case 1:
+                                    key = reader.string();
+                                    break;
+                                case 2:
+                                    value = reader.double();
+                                    break;
+                                default:
+                                    reader.skipType(tag2 & 7);
+                                    break;
+                                }
                             }
+                            message.mapStringDouble[key] = value;
+                            break;
                         }
-                        message.mapStringDouble[key] = value;
-                        break;
-                    case 6:
-                        if (message.mapStringEnum === $util.emptyObject)
-                            message.mapStringEnum = {};
-                        var end2 = reader.uint32() + reader.pos;
-                        key = "";
-                        value = 0;
-                        while (reader.pos < end2) {
-                            var tag2 = reader.uint32();
-                            switch (tag2 >>> 3) {
-                            case 1:
-                                key = reader.string();
-                                break;
-                            case 2:
-                                value = reader.int32();
-                                break;
-                            default:
-                                reader.skipType(tag2 & 7);
-                                break;
+                    case 6: {
+                            if (message.mapStringEnum === $util.emptyObject)
+                                message.mapStringEnum = {};
+                            var end2 = reader.uint32() + reader.pos;
+                            key = "";
+                            value = 0;
+                            while (reader.pos < end2) {
+                                var tag2 = reader.uint32();
+                                switch (tag2 >>> 3) {
+                                case 1:
+                                    key = reader.string();
+                                    break;
+                                case 2:
+                                    value = reader.int32();
+                                    break;
+                                default:
+                                    reader.skipType(tag2 & 7);
+                                    break;
+                                }
                             }
+                            message.mapStringEnum[key] = value;
+                            break;
                         }
-                        message.mapStringEnum[key] = value;
-                        break;
-                    case 7:
-                        if (message.mapStringMsg === $util.emptyObject)
-                            message.mapStringMsg = {};
-                        var end2 = reader.uint32() + reader.pos;
-                        key = "";
-                        value = null;
-                        while (reader.pos < end2) {
-                            var tag2 = reader.uint32();
-                            switch (tag2 >>> 3) {
-                            case 1:
-                                key = reader.string();
-                                break;
-                            case 2:
-                                value = $root.jspb.test.MapValueMessageNoBinary.decode(reader, reader.uint32());
-                                break;
-                            default:
-                                reader.skipType(tag2 & 7);
-                                break;
+                    case 7: {
+                            if (message.mapStringMsg === $util.emptyObject)
+                                message.mapStringMsg = {};
+                            var end2 = reader.uint32() + reader.pos;
+                            key = "";
+                            value = null;
+                            while (reader.pos < end2) {
+                                var tag2 = reader.uint32();
+                                switch (tag2 >>> 3) {
+                                case 1:
+                                    key = reader.string();
+                                    break;
+                                case 2:
+                                    value = $root.jspb.test.MapValueMessageNoBinary.decode(reader, reader.uint32());
+                                    break;
+                                default:
+                                    reader.skipType(tag2 & 7);
+                                    break;
+                                }
                             }
+                            message.mapStringMsg[key] = value;
+                            break;
                         }
-                        message.mapStringMsg[key] = value;
-                        break;
-                    case 8:
-                        if (message.mapInt32String === $util.emptyObject)
-                            message.mapInt32String = {};
-                        var end2 = reader.uint32() + reader.pos;
-                        key = 0;
-                        value = "";
-                        while (reader.pos < end2) {
-                            var tag2 = reader.uint32();
-                            switch (tag2 >>> 3) {
-                            case 1:
-                                key = reader.int32();
-                                break;
-                            case 2:
-                                value = reader.string();
-                                break;
-                            default:
-                                reader.skipType(tag2 & 7);
-                                break;
+                    case 8: {
+                            if (message.mapInt32String === $util.emptyObject)
+                                message.mapInt32String = {};
+                            var end2 = reader.uint32() + reader.pos;
+                            key = 0;
+                            value = "";
+                            while (reader.pos < end2) {
+                                var tag2 = reader.uint32();
+                                switch (tag2 >>> 3) {
+                                case 1:
+                                    key = reader.int32();
+                                    break;
+                                case 2:
+                                    value = reader.string();
+                                    break;
+                                default:
+                                    reader.skipType(tag2 & 7);
+                                    break;
+                                }
                             }
+                            message.mapInt32String[key] = value;
+                            break;
                         }
-                        message.mapInt32String[key] = value;
-                        break;
-                    case 9:
-                        if (message.mapInt64String === $util.emptyObject)
-                            message.mapInt64String = {};
-                        var end2 = reader.uint32() + reader.pos;
-                        key = 0;
-                        value = "";
-                        while (reader.pos < end2) {
-                            var tag2 = reader.uint32();
-                            switch (tag2 >>> 3) {
-                            case 1:
-                                key = reader.int64();
-                                break;
-                            case 2:
-                                value = reader.string();
-                                break;
-                            default:
-                                reader.skipType(tag2 & 7);
-                                break;
+                    case 9: {
+                            if (message.mapInt64String === $util.emptyObject)
+                                message.mapInt64String = {};
+                            var end2 = reader.uint32() + reader.pos;
+                            key = 0;
+                            value = "";
+                            while (reader.pos < end2) {
+                                var tag2 = reader.uint32();
+                                switch (tag2 >>> 3) {
+                                case 1:
+                                    key = reader.int64();
+                                    break;
+                                case 2:
+                                    value = reader.string();
+                                    break;
+                                default:
+                                    reader.skipType(tag2 & 7);
+                                    break;
+                                }
                             }
+                            message.mapInt64String[typeof key === "object" ? $util.longToHash(key) : key] = value;
+                            break;
                         }
-                        message.mapInt64String[typeof key === "object" ? $util.longToHash(key) : key] = value;
-                        break;
-                    case 10:
-                        if (message.mapBoolString === $util.emptyObject)
-                            message.mapBoolString = {};
-                        var end2 = reader.uint32() + reader.pos;
-                        key = false;
-                        value = "";
-                        while (reader.pos < end2) {
-                            var tag2 = reader.uint32();
-                            switch (tag2 >>> 3) {
-                            case 1:
-                                key = reader.bool();
-                                break;
-                            case 2:
-                                value = reader.string();
-                                break;
-                            default:
-                                reader.skipType(tag2 & 7);
-                                break;
+                    case 10: {
+                            if (message.mapBoolString === $util.emptyObject)
+                                message.mapBoolString = {};
+                            var end2 = reader.uint32() + reader.pos;
+                            key = false;
+                            value = "";
+                            while (reader.pos < end2) {
+                                var tag2 = reader.uint32();
+                                switch (tag2 >>> 3) {
+                                case 1:
+                                    key = reader.bool();
+                                    break;
+                                case 2:
+                                    value = reader.string();
+                                    break;
+                                default:
+                                    reader.skipType(tag2 & 7);
+                                    break;
+                                }
                             }
+                            message.mapBoolString[key] = value;
+                            break;
                         }
-                        message.mapBoolString[key] = value;
-                        break;
-                    case 11:
-                        message.testMapFields = $root.jspb.test.TestMapFieldsNoBinary.decode(reader, reader.uint32());
-                        break;
-                    case 12:
-                        if (message.mapStringTestmapfields === $util.emptyObject)
-                            message.mapStringTestmapfields = {};
-                        var end2 = reader.uint32() + reader.pos;
-                        key = "";
-                        value = null;
-                        while (reader.pos < end2) {
-                            var tag2 = reader.uint32();
-                            switch (tag2 >>> 3) {
-                            case 1:
-                                key = reader.string();
-                                break;
-                            case 2:
-                                value = $root.jspb.test.TestMapFieldsNoBinary.decode(reader, reader.uint32());
-                                break;
-                            default:
-                                reader.skipType(tag2 & 7);
-                                break;
+                    case 11: {
+                            message.testMapFields = $root.jspb.test.TestMapFieldsNoBinary.decode(reader, reader.uint32());
+                            break;
+                        }
+                    case 12: {
+                            if (message.mapStringTestmapfields === $util.emptyObject)
+                                message.mapStringTestmapfields = {};
+                            var end2 = reader.uint32() + reader.pos;
+                            key = "";
+                            value = null;
+                            while (reader.pos < end2) {
+                                var tag2 = reader.uint32();
+                                switch (tag2 >>> 3) {
+                                case 1:
+                                    key = reader.string();
+                                    break;
+                                case 2:
+                                    value = $root.jspb.test.TestMapFieldsNoBinary.decode(reader, reader.uint32());
+                                    break;
+                                default:
+                                    reader.skipType(tag2 & 7);
+                                    break;
+                                }
                             }
+                            message.mapStringTestmapfields[key] = value;
+                            break;
                         }
-                        message.mapStringTestmapfields[key] = value;
-                        break;
                     default:
                         reader.skipType(tag & 7);
                         break;
@@ -7849,6 +8660,12 @@ $root.jspb = (function() {
                     message.mapStringEnum = {};
                     for (var keys = Object.keys(object.mapStringEnum), i = 0; i < keys.length; ++i)
                         switch (object.mapStringEnum[keys[i]]) {
+                        default:
+                            if (typeof object.mapStringEnum[keys[i]] === "number") {
+                                message.mapStringEnum[keys[i]] = object.mapStringEnum[keys[i]];
+                                break;
+                            }
+                            break;
                         case "MAP_VALUE_FOO_NOBINARY":
                         case 0:
                             message.mapStringEnum[keys[i]] = 0;
@@ -7972,7 +8789,7 @@ $root.jspb = (function() {
                 if (message.mapStringEnum && (keys2 = Object.keys(message.mapStringEnum)).length) {
                     object.mapStringEnum = {};
                     for (var j = 0; j < keys2.length; ++j)
-                        object.mapStringEnum[keys2[j]] = options.enums === String ? $root.jspb.test.MapValueEnumNoBinary[message.mapStringEnum[keys2[j]]] : message.mapStringEnum[keys2[j]];
+                        object.mapStringEnum[keys2[j]] = options.enums === String ? $root.jspb.test.MapValueEnumNoBinary[message.mapStringEnum[keys2[j]]] === undefined ? message.mapStringEnum[keys2[j]] : $root.jspb.test.MapValueEnumNoBinary[message.mapStringEnum[keys2[j]]] : message.mapStringEnum[keys2[j]];
                 }
                 if (message.mapStringMsg && (keys2 = Object.keys(message.mapStringMsg)).length) {
                     object.mapStringMsg = {};
@@ -8141,9 +8958,10 @@ $root.jspb = (function() {
                 while (reader.pos < end) {
                     var tag = reader.uint32();
                     switch (tag >>> 3) {
-                    case 1:
-                        message.foo = reader.int32();
-                        break;
+                    case 1: {
+                            message.foo = reader.int32();
+                            break;
+                        }
                     default:
                         reader.skipType(tag & 7);
                         break;
@@ -8687,9 +9505,10 @@ $root.jspb = (function() {
                         while (reader.pos < end) {
                             var tag = reader.uint32();
                             switch (tag >>> 3) {
-                            case 1:
-                                message.count = reader.int32();
-                                break;
+                            case 1: {
+                                    message.count = reader.int32();
+                                    break;
+                                }
                             default:
                                 reader.skipType(tag & 7);
                                 break;
@@ -8816,7 +9635,7 @@ $root.google = (function() {
      * @exports google
      * @namespace
      */
-    var google = {};
+    var google = $root.google || {};
 
     google.protobuf = (function() {
 
@@ -8825,7 +9644,7 @@ $root.google = (function() {
          * @memberof google
          * @namespace
          */
-        var protobuf = {};
+        var protobuf = $root.google.protobuf || {};
 
         protobuf.FileDescriptorSet = (function() {
 
@@ -8921,11 +9740,12 @@ $root.google = (function() {
                 while (reader.pos < end) {
                     var tag = reader.uint32();
                     switch (tag >>> 3) {
-                    case 1:
-                        if (!(message.file && message.file.length))
-                            message.file = [];
-                        message.file.push($root.google.protobuf.FileDescriptorProto.decode(reader, reader.uint32()));
-                        break;
+                    case 1: {
+                            if (!(message.file && message.file.length))
+                                message.file = [];
+                            message.file.push($root.google.protobuf.FileDescriptorProto.decode(reader, reader.uint32()));
+                            break;
+                        }
                     default:
                         reader.skipType(tag & 7);
                         break;
@@ -9277,66 +10097,78 @@ $root.google = (function() {
                 while (reader.pos < end) {
                     var tag = reader.uint32();
                     switch (tag >>> 3) {
-                    case 1:
-                        message.name = reader.string();
-                        break;
-                    case 2:
-                        message["package"] = reader.string();
-                        break;
-                    case 3:
-                        if (!(message.dependency && message.dependency.length))
-                            message.dependency = [];
-                        message.dependency.push(reader.string());
-                        break;
-                    case 10:
-                        if (!(message.publicDependency && message.publicDependency.length))
-                            message.publicDependency = [];
-                        if ((tag & 7) === 2) {
-                            var end2 = reader.uint32() + reader.pos;
-                            while (reader.pos < end2)
+                    case 1: {
+                            message.name = reader.string();
+                            break;
+                        }
+                    case 2: {
+                            message["package"] = reader.string();
+                            break;
+                        }
+                    case 3: {
+                            if (!(message.dependency && message.dependency.length))
+                                message.dependency = [];
+                            message.dependency.push(reader.string());
+                            break;
+                        }
+                    case 10: {
+                            if (!(message.publicDependency && message.publicDependency.length))
+                                message.publicDependency = [];
+                            if ((tag & 7) === 2) {
+                                var end2 = reader.uint32() + reader.pos;
+                                while (reader.pos < end2)
+                                    message.publicDependency.push(reader.int32());
+                            } else
                                 message.publicDependency.push(reader.int32());
-                        } else
-                            message.publicDependency.push(reader.int32());
-                        break;
-                    case 11:
-                        if (!(message.weakDependency && message.weakDependency.length))
-                            message.weakDependency = [];
-                        if ((tag & 7) === 2) {
-                            var end2 = reader.uint32() + reader.pos;
-                            while (reader.pos < end2)
+                            break;
+                        }
+                    case 11: {
+                            if (!(message.weakDependency && message.weakDependency.length))
+                                message.weakDependency = [];
+                            if ((tag & 7) === 2) {
+                                var end2 = reader.uint32() + reader.pos;
+                                while (reader.pos < end2)
+                                    message.weakDependency.push(reader.int32());
+                            } else
                                 message.weakDependency.push(reader.int32());
-                        } else
-                            message.weakDependency.push(reader.int32());
-                        break;
-                    case 4:
-                        if (!(message.messageType && message.messageType.length))
-                            message.messageType = [];
-                        message.messageType.push($root.google.protobuf.DescriptorProto.decode(reader, reader.uint32()));
-                        break;
-                    case 5:
-                        if (!(message.enumType && message.enumType.length))
-                            message.enumType = [];
-                        message.enumType.push($root.google.protobuf.EnumDescriptorProto.decode(reader, reader.uint32()));
-                        break;
-                    case 6:
-                        if (!(message.service && message.service.length))
-                            message.service = [];
-                        message.service.push($root.google.protobuf.ServiceDescriptorProto.decode(reader, reader.uint32()));
-                        break;
-                    case 7:
-                        if (!(message.extension && message.extension.length))
-                            message.extension = [];
-                        message.extension.push($root.google.protobuf.FieldDescriptorProto.decode(reader, reader.uint32()));
-                        break;
-                    case 8:
-                        message.options = $root.google.protobuf.FileOptions.decode(reader, reader.uint32());
-                        break;
-                    case 9:
-                        message.sourceCodeInfo = $root.google.protobuf.SourceCodeInfo.decode(reader, reader.uint32());
-                        break;
-                    case 12:
-                        message.syntax = reader.string();
-                        break;
+                            break;
+                        }
+                    case 4: {
+                            if (!(message.messageType && message.messageType.length))
+                                message.messageType = [];
+                            message.messageType.push($root.google.protobuf.DescriptorProto.decode(reader, reader.uint32()));
+                            break;
+                        }
+                    case 5: {
+                            if (!(message.enumType && message.enumType.length))
+                                message.enumType = [];
+                            message.enumType.push($root.google.protobuf.EnumDescriptorProto.decode(reader, reader.uint32()));
+                            break;
+                        }
+                    case 6: {
+                            if (!(message.service && message.service.length))
+                                message.service = [];
+                            message.service.push($root.google.protobuf.ServiceDescriptorProto.decode(reader, reader.uint32()));
+                            break;
+                        }
+                    case 7: {
+                            if (!(message.extension && message.extension.length))
+                                message.extension = [];
+                            message.extension.push($root.google.protobuf.FieldDescriptorProto.decode(reader, reader.uint32()));
+                            break;
+                        }
+                    case 8: {
+                            message.options = $root.google.protobuf.FileOptions.decode(reader, reader.uint32());
+                            break;
+                        }
+                    case 9: {
+                            message.sourceCodeInfo = $root.google.protobuf.SourceCodeInfo.decode(reader, reader.uint32());
+                            break;
+                        }
+                    case 12: {
+                            message.syntax = reader.string();
+                            break;
+                        }
                     default:
                         reader.skipType(tag & 7);
                         break;
@@ -9856,52 +10688,62 @@ $root.google = (function() {
                 while (reader.pos < end) {
                     var tag = reader.uint32();
                     switch (tag >>> 3) {
-                    case 1:
-                        message.name = reader.string();
-                        break;
-                    case 2:
-                        if (!(message.field && message.field.length))
-                            message.field = [];
-                        message.field.push($root.google.protobuf.FieldDescriptorProto.decode(reader, reader.uint32()));
-                        break;
-                    case 6:
-                        if (!(message.extension && message.extension.length))
-                            message.extension = [];
-                        message.extension.push($root.google.protobuf.FieldDescriptorProto.decode(reader, reader.uint32()));
-                        break;
-                    case 3:
-                        if (!(message.nestedType && message.nestedType.length))
-                            message.nestedType = [];
-                        message.nestedType.push($root.google.protobuf.DescriptorProto.decode(reader, reader.uint32()));
-                        break;
-                    case 4:
-                        if (!(message.enumType && message.enumType.length))
-                            message.enumType = [];
-                        message.enumType.push($root.google.protobuf.EnumDescriptorProto.decode(reader, reader.uint32()));
-                        break;
-                    case 5:
-                        if (!(message.extensionRange && message.extensionRange.length))
-                            message.extensionRange = [];
-                        message.extensionRange.push($root.google.protobuf.DescriptorProto.ExtensionRange.decode(reader, reader.uint32()));
-                        break;
-                    case 8:
-                        if (!(message.oneofDecl && message.oneofDecl.length))
-                            message.oneofDecl = [];
-                        message.oneofDecl.push($root.google.protobuf.OneofDescriptorProto.decode(reader, reader.uint32()));
-                        break;
-                    case 7:
-                        message.options = $root.google.protobuf.MessageOptions.decode(reader, reader.uint32());
-                        break;
-                    case 9:
-                        if (!(message.reservedRange && message.reservedRange.length))
-                            message.reservedRange = [];
-                        message.reservedRange.push($root.google.protobuf.DescriptorProto.ReservedRange.decode(reader, reader.uint32()));
-                        break;
-                    case 10:
-                        if (!(message.reservedName && message.reservedName.length))
-                            message.reservedName = [];
-                        message.reservedName.push(reader.string());
-                        break;
+                    case 1: {
+                            message.name = reader.string();
+                            break;
+                        }
+                    case 2: {
+                            if (!(message.field && message.field.length))
+                                message.field = [];
+                            message.field.push($root.google.protobuf.FieldDescriptorProto.decode(reader, reader.uint32()));
+                            break;
+                        }
+                    case 6: {
+                            if (!(message.extension && message.extension.length))
+                                message.extension = [];
+                            message.extension.push($root.google.protobuf.FieldDescriptorProto.decode(reader, reader.uint32()));
+                            break;
+                        }
+                    case 3: {
+                            if (!(message.nestedType && message.nestedType.length))
+                                message.nestedType = [];
+                            message.nestedType.push($root.google.protobuf.DescriptorProto.decode(reader, reader.uint32()));
+                            break;
+                        }
+                    case 4: {
+                            if (!(message.enumType && message.enumType.length))
+                                message.enumType = [];
+                            message.enumType.push($root.google.protobuf.EnumDescriptorProto.decode(reader, reader.uint32()));
+                            break;
+                        }
+                    case 5: {
+                            if (!(message.extensionRange && message.extensionRange.length))
+                                message.extensionRange = [];
+                            message.extensionRange.push($root.google.protobuf.DescriptorProto.ExtensionRange.decode(reader, reader.uint32()));
+                            break;
+                        }
+                    case 8: {
+                            if (!(message.oneofDecl && message.oneofDecl.length))
+                                message.oneofDecl = [];
+                            message.oneofDecl.push($root.google.protobuf.OneofDescriptorProto.decode(reader, reader.uint32()));
+                            break;
+                        }
+                    case 7: {
+                            message.options = $root.google.protobuf.MessageOptions.decode(reader, reader.uint32());
+                            break;
+                        }
+                    case 9: {
+                            if (!(message.reservedRange && message.reservedRange.length))
+                                message.reservedRange = [];
+                            message.reservedRange.push($root.google.protobuf.DescriptorProto.ReservedRange.decode(reader, reader.uint32()));
+                            break;
+                        }
+                    case 10: {
+                            if (!(message.reservedName && message.reservedName.length))
+                                message.reservedName = [];
+                            message.reservedName.push(reader.string());
+                            break;
+                        }
                     default:
                         reader.skipType(tag & 7);
                         break;
@@ -10320,12 +11162,14 @@ $root.google = (function() {
                     while (reader.pos < end) {
                         var tag = reader.uint32();
                         switch (tag >>> 3) {
-                        case 1:
-                            message.start = reader.int32();
-                            break;
-                        case 2:
-                            message.end = reader.int32();
-                            break;
+                        case 1: {
+                                message.start = reader.int32();
+                                break;
+                            }
+                        case 2: {
+                                message.end = reader.int32();
+                                break;
+                            }
                         default:
                             reader.skipType(tag & 7);
                             break;
@@ -10545,12 +11389,14 @@ $root.google = (function() {
                     while (reader.pos < end) {
                         var tag = reader.uint32();
                         switch (tag >>> 3) {
-                        case 1:
-                            message.start = reader.int32();
-                            break;
-                        case 2:
-                            message.end = reader.int32();
-                            break;
+                        case 1: {
+                                message.start = reader.int32();
+                                break;
+                            }
+                        case 2: {
+                                message.end = reader.int32();
+                                break;
+                            }
                         default:
                             reader.skipType(tag & 7);
                             break;
@@ -10861,36 +11707,46 @@ $root.google = (function() {
                 while (reader.pos < end) {
                     var tag = reader.uint32();
                     switch (tag >>> 3) {
-                    case 1:
-                        message.name = reader.string();
-                        break;
-                    case 3:
-                        message.number = reader.int32();
-                        break;
-                    case 4:
-                        message.label = reader.int32();
-                        break;
-                    case 5:
-                        message.type = reader.int32();
-                        break;
-                    case 6:
-                        message.typeName = reader.string();
-                        break;
-                    case 2:
-                        message.extendee = reader.string();
-                        break;
-                    case 7:
-                        message.defaultValue = reader.string();
-                        break;
-                    case 9:
-                        message.oneofIndex = reader.int32();
-                        break;
-                    case 10:
-                        message.jsonName = reader.string();
-                        break;
-                    case 8:
-                        message.options = $root.google.protobuf.FieldOptions.decode(reader, reader.uint32());
-                        break;
+                    case 1: {
+                            message.name = reader.string();
+                            break;
+                        }
+                    case 3: {
+                            message.number = reader.int32();
+                            break;
+                        }
+                    case 4: {
+                            message.label = reader.int32();
+                            break;
+                        }
+                    case 5: {
+                            message.type = reader.int32();
+                            break;
+                        }
+                    case 6: {
+                            message.typeName = reader.string();
+                            break;
+                        }
+                    case 2: {
+                            message.extendee = reader.string();
+                            break;
+                        }
+                    case 7: {
+                            message.defaultValue = reader.string();
+                            break;
+                        }
+                    case 9: {
+                            message.oneofIndex = reader.int32();
+                            break;
+                        }
+                    case 10: {
+                            message.jsonName = reader.string();
+                            break;
+                        }
+                    case 8: {
+                            message.options = $root.google.protobuf.FieldOptions.decode(reader, reader.uint32());
+                            break;
+                        }
                     default:
                         reader.skipType(tag & 7);
                         break;
@@ -11005,6 +11861,12 @@ $root.google = (function() {
                 if (object.number != null)
                     message.number = object.number | 0;
                 switch (object.label) {
+                default:
+                    if (typeof object.label === "number") {
+                        message.label = object.label;
+                        break;
+                    }
+                    break;
                 case "LABEL_OPTIONAL":
                 case 1:
                     message.label = 1;
@@ -11019,6 +11881,12 @@ $root.google = (function() {
                     break;
                 }
                 switch (object.type) {
+                default:
+                    if (typeof object.type === "number") {
+                        message.type = object.type;
+                        break;
+                    }
+                    break;
                 case "TYPE_DOUBLE":
                 case 1:
                     message.type = 1;
@@ -11142,9 +12010,9 @@ $root.google = (function() {
                 if (message.number != null && message.hasOwnProperty("number"))
                     object.number = message.number;
                 if (message.label != null && message.hasOwnProperty("label"))
-                    object.label = options.enums === String ? $root.google.protobuf.FieldDescriptorProto.Label[message.label] : message.label;
+                    object.label = options.enums === String ? $root.google.protobuf.FieldDescriptorProto.Label[message.label] === undefined ? message.label : $root.google.protobuf.FieldDescriptorProto.Label[message.label] : message.label;
                 if (message.type != null && message.hasOwnProperty("type"))
-                    object.type = options.enums === String ? $root.google.protobuf.FieldDescriptorProto.Type[message.type] : message.type;
+                    object.type = options.enums === String ? $root.google.protobuf.FieldDescriptorProto.Type[message.type] === undefined ? message.type : $root.google.protobuf.FieldDescriptorProto.Type[message.type] : message.type;
                 if (message.typeName != null && message.hasOwnProperty("typeName"))
                     object.typeName = message.typeName;
                 if (message.defaultValue != null && message.hasOwnProperty("defaultValue"))
@@ -11352,12 +12220,14 @@ $root.google = (function() {
                 while (reader.pos < end) {
                     var tag = reader.uint32();
                     switch (tag >>> 3) {
-                    case 1:
-                        message.name = reader.string();
-                        break;
-                    case 2:
-                        message.options = $root.google.protobuf.OneofOptions.decode(reader, reader.uint32());
-                        break;
+                    case 1: {
+                            message.name = reader.string();
+                            break;
+                        }
+                    case 2: {
+                            message.options = $root.google.protobuf.OneofOptions.decode(reader, reader.uint32());
+                            break;
+                        }
                     default:
                         reader.skipType(tag & 7);
                         break;
@@ -11595,17 +12465,20 @@ $root.google = (function() {
                 while (reader.pos < end) {
                     var tag = reader.uint32();
                     switch (tag >>> 3) {
-                    case 1:
-                        message.name = reader.string();
-                        break;
-                    case 2:
-                        if (!(message.value && message.value.length))
-                            message.value = [];
-                        message.value.push($root.google.protobuf.EnumValueDescriptorProto.decode(reader, reader.uint32()));
-                        break;
-                    case 3:
-                        message.options = $root.google.protobuf.EnumOptions.decode(reader, reader.uint32());
-                        break;
+                    case 1: {
+                            message.name = reader.string();
+                            break;
+                        }
+                    case 2: {
+                            if (!(message.value && message.value.length))
+                                message.value = [];
+                            message.value.push($root.google.protobuf.EnumValueDescriptorProto.decode(reader, reader.uint32()));
+                            break;
+                        }
+                    case 3: {
+                            message.options = $root.google.protobuf.EnumOptions.decode(reader, reader.uint32());
+                            break;
+                        }
                     default:
                         reader.skipType(tag & 7);
                         break;
@@ -11867,15 +12740,18 @@ $root.google = (function() {
                 while (reader.pos < end) {
                     var tag = reader.uint32();
                     switch (tag >>> 3) {
-                    case 1:
-                        message.name = reader.string();
-                        break;
-                    case 2:
-                        message.number = reader.int32();
-                        break;
-                    case 3:
-                        message.options = $root.google.protobuf.EnumValueOptions.decode(reader, reader.uint32());
-                        break;
+                    case 1: {
+                            message.name = reader.string();
+                            break;
+                        }
+                    case 2: {
+                            message.number = reader.int32();
+                            break;
+                        }
+                    case 3: {
+                            message.options = $root.google.protobuf.EnumValueOptions.decode(reader, reader.uint32());
+                            break;
+                        }
                     default:
                         reader.skipType(tag & 7);
                         break;
@@ -12121,17 +12997,20 @@ $root.google = (function() {
                 while (reader.pos < end) {
                     var tag = reader.uint32();
                     switch (tag >>> 3) {
-                    case 1:
-                        message.name = reader.string();
-                        break;
-                    case 2:
-                        if (!(message.method && message.method.length))
-                            message.method = [];
-                        message.method.push($root.google.protobuf.MethodDescriptorProto.decode(reader, reader.uint32()));
-                        break;
-                    case 3:
-                        message.options = $root.google.protobuf.ServiceOptions.decode(reader, reader.uint32());
-                        break;
+                    case 1: {
+                            message.name = reader.string();
+                            break;
+                        }
+                    case 2: {
+                            if (!(message.method && message.method.length))
+                                message.method = [];
+                            message.method.push($root.google.protobuf.MethodDescriptorProto.decode(reader, reader.uint32()));
+                            break;
+                        }
+                    case 3: {
+                            message.options = $root.google.protobuf.ServiceOptions.decode(reader, reader.uint32());
+                            break;
+                        }
                     default:
                         reader.skipType(tag & 7);
                         break;
@@ -12426,24 +13305,30 @@ $root.google = (function() {
                 while (reader.pos < end) {
                     var tag = reader.uint32();
                     switch (tag >>> 3) {
-                    case 1:
-                        message.name = reader.string();
-                        break;
-                    case 2:
-                        message.inputType = reader.string();
-                        break;
-                    case 3:
-                        message.outputType = reader.string();
-                        break;
-                    case 4:
-                        message.options = $root.google.protobuf.MethodOptions.decode(reader, reader.uint32());
-                        break;
-                    case 5:
-                        message.clientStreaming = reader.bool();
-                        break;
-                    case 6:
-                        message.serverStreaming = reader.bool();
-                        break;
+                    case 1: {
+                            message.name = reader.string();
+                            break;
+                        }
+                    case 2: {
+                            message.inputType = reader.string();
+                            break;
+                        }
+                    case 3: {
+                            message.outputType = reader.string();
+                            break;
+                        }
+                    case 4: {
+                            message.options = $root.google.protobuf.MethodOptions.decode(reader, reader.uint32());
+                            break;
+                        }
+                    case 5: {
+                            message.clientStreaming = reader.bool();
+                            break;
+                        }
+                    case 6: {
+                            message.serverStreaming = reader.bool();
+                            break;
+                        }
                     default:
                         reader.skipType(tag & 7);
                         break;
@@ -12845,53 +13730,68 @@ $root.google = (function() {
                 while (reader.pos < end) {
                     var tag = reader.uint32();
                     switch (tag >>> 3) {
-                    case 1:
-                        message.javaPackage = reader.string();
-                        break;
-                    case 8:
-                        message.javaOuterClassname = reader.string();
-                        break;
-                    case 10:
-                        message.javaMultipleFiles = reader.bool();
-                        break;
-                    case 20:
-                        message.javaGenerateEqualsAndHash = reader.bool();
-                        break;
-                    case 27:
-                        message.javaStringCheckUtf8 = reader.bool();
-                        break;
-                    case 9:
-                        message.optimizeFor = reader.int32();
-                        break;
-                    case 11:
-                        message.goPackage = reader.string();
-                        break;
-                    case 16:
-                        message.ccGenericServices = reader.bool();
-                        break;
-                    case 17:
-                        message.javaGenericServices = reader.bool();
-                        break;
-                    case 18:
-                        message.pyGenericServices = reader.bool();
-                        break;
-                    case 23:
-                        message.deprecated = reader.bool();
-                        break;
-                    case 31:
-                        message.ccEnableArenas = reader.bool();
-                        break;
-                    case 36:
-                        message.objcClassPrefix = reader.string();
-                        break;
-                    case 37:
-                        message.csharpNamespace = reader.string();
-                        break;
-                    case 999:
-                        if (!(message.uninterpretedOption && message.uninterpretedOption.length))
-                            message.uninterpretedOption = [];
-                        message.uninterpretedOption.push($root.google.protobuf.UninterpretedOption.decode(reader, reader.uint32()));
-                        break;
+                    case 1: {
+                            message.javaPackage = reader.string();
+                            break;
+                        }
+                    case 8: {
+                            message.javaOuterClassname = reader.string();
+                            break;
+                        }
+                    case 10: {
+                            message.javaMultipleFiles = reader.bool();
+                            break;
+                        }
+                    case 20: {
+                            message.javaGenerateEqualsAndHash = reader.bool();
+                            break;
+                        }
+                    case 27: {
+                            message.javaStringCheckUtf8 = reader.bool();
+                            break;
+                        }
+                    case 9: {
+                            message.optimizeFor = reader.int32();
+                            break;
+                        }
+                    case 11: {
+                            message.goPackage = reader.string();
+                            break;
+                        }
+                    case 16: {
+                            message.ccGenericServices = reader.bool();
+                            break;
+                        }
+                    case 17: {
+                            message.javaGenericServices = reader.bool();
+                            break;
+                        }
+                    case 18: {
+                            message.pyGenericServices = reader.bool();
+                            break;
+                        }
+                    case 23: {
+                            message.deprecated = reader.bool();
+                            break;
+                        }
+                    case 31: {
+                            message.ccEnableArenas = reader.bool();
+                            break;
+                        }
+                    case 36: {
+                            message.objcClassPrefix = reader.string();
+                            break;
+                        }
+                    case 37: {
+                            message.csharpNamespace = reader.string();
+                            break;
+                        }
+                    case 999: {
+                            if (!(message.uninterpretedOption && message.uninterpretedOption.length))
+                                message.uninterpretedOption = [];
+                            message.uninterpretedOption.push($root.google.protobuf.UninterpretedOption.decode(reader, reader.uint32()));
+                            break;
+                        }
                     default:
                         reader.skipType(tag & 7);
                         break;
@@ -13010,6 +13910,12 @@ $root.google = (function() {
                 if (object.javaStringCheckUtf8 != null)
                     message.javaStringCheckUtf8 = Boolean(object.javaStringCheckUtf8);
                 switch (object.optimizeFor) {
+                default:
+                    if (typeof object.optimizeFor === "number") {
+                        message.optimizeFor = object.optimizeFor;
+                        break;
+                    }
+                    break;
                 case "SPEED":
                 case 1:
                     message.optimizeFor = 1;
@@ -13088,7 +13994,7 @@ $root.google = (function() {
                 if (message.javaOuterClassname != null && message.hasOwnProperty("javaOuterClassname"))
                     object.javaOuterClassname = message.javaOuterClassname;
                 if (message.optimizeFor != null && message.hasOwnProperty("optimizeFor"))
-                    object.optimizeFor = options.enums === String ? $root.google.protobuf.FileOptions.OptimizeMode[message.optimizeFor] : message.optimizeFor;
+                    object.optimizeFor = options.enums === String ? $root.google.protobuf.FileOptions.OptimizeMode[message.optimizeFor] === undefined ? message.optimizeFor : $root.google.protobuf.FileOptions.OptimizeMode[message.optimizeFor] : message.optimizeFor;
                 if (message.javaMultipleFiles != null && message.hasOwnProperty("javaMultipleFiles"))
                     object.javaMultipleFiles = message.javaMultipleFiles;
                 if (message.goPackage != null && message.hasOwnProperty("goPackage"))
@@ -13302,23 +14208,28 @@ $root.google = (function() {
                 while (reader.pos < end) {
                     var tag = reader.uint32();
                     switch (tag >>> 3) {
-                    case 1:
-                        message.messageSetWireFormat = reader.bool();
-                        break;
-                    case 2:
-                        message.noStandardDescriptorAccessor = reader.bool();
-                        break;
-                    case 3:
-                        message.deprecated = reader.bool();
-                        break;
-                    case 7:
-                        message.mapEntry = reader.bool();
-                        break;
-                    case 999:
-                        if (!(message.uninterpretedOption && message.uninterpretedOption.length))
-                            message.uninterpretedOption = [];
-                        message.uninterpretedOption.push($root.google.protobuf.UninterpretedOption.decode(reader, reader.uint32()));
-                        break;
+                    case 1: {
+                            message.messageSetWireFormat = reader.bool();
+                            break;
+                        }
+                    case 2: {
+                            message.noStandardDescriptorAccessor = reader.bool();
+                            break;
+                        }
+                    case 3: {
+                            message.deprecated = reader.bool();
+                            break;
+                        }
+                    case 7: {
+                            message.mapEntry = reader.bool();
+                            break;
+                        }
+                    case 999: {
+                            if (!(message.uninterpretedOption && message.uninterpretedOption.length))
+                                message.uninterpretedOption = [];
+                            message.uninterpretedOption.push($root.google.protobuf.UninterpretedOption.decode(reader, reader.uint32()));
+                            break;
+                        }
                     default:
                         reader.skipType(tag & 7);
                         break;
@@ -13637,29 +14548,36 @@ $root.google = (function() {
                 while (reader.pos < end) {
                     var tag = reader.uint32();
                     switch (tag >>> 3) {
-                    case 1:
-                        message.ctype = reader.int32();
-                        break;
-                    case 2:
-                        message.packed = reader.bool();
-                        break;
-                    case 6:
-                        message.jstype = reader.int32();
-                        break;
-                    case 5:
-                        message.lazy = reader.bool();
-                        break;
-                    case 3:
-                        message.deprecated = reader.bool();
-                        break;
-                    case 10:
-                        message.weak = reader.bool();
-                        break;
-                    case 999:
-                        if (!(message.uninterpretedOption && message.uninterpretedOption.length))
-                            message.uninterpretedOption = [];
-                        message.uninterpretedOption.push($root.google.protobuf.UninterpretedOption.decode(reader, reader.uint32()));
-                        break;
+                    case 1: {
+                            message.ctype = reader.int32();
+                            break;
+                        }
+                    case 2: {
+                            message.packed = reader.bool();
+                            break;
+                        }
+                    case 6: {
+                            message.jstype = reader.int32();
+                            break;
+                        }
+                    case 5: {
+                            message.lazy = reader.bool();
+                            break;
+                        }
+                    case 3: {
+                            message.deprecated = reader.bool();
+                            break;
+                        }
+                    case 10: {
+                            message.weak = reader.bool();
+                            break;
+                        }
+                    case 999: {
+                            if (!(message.uninterpretedOption && message.uninterpretedOption.length))
+                                message.uninterpretedOption = [];
+                            message.uninterpretedOption.push($root.google.protobuf.UninterpretedOption.decode(reader, reader.uint32()));
+                            break;
+                        }
                     default:
                         reader.skipType(tag & 7);
                         break;
@@ -13750,6 +14668,12 @@ $root.google = (function() {
                     return object;
                 var message = new $root.google.protobuf.FieldOptions();
                 switch (object.ctype) {
+                default:
+                    if (typeof object.ctype === "number") {
+                        message.ctype = object.ctype;
+                        break;
+                    }
+                    break;
                 case "STRING":
                 case 0:
                     message.ctype = 0;
@@ -13766,6 +14690,12 @@ $root.google = (function() {
                 if (object.packed != null)
                     message.packed = Boolean(object.packed);
                 switch (object.jstype) {
+                default:
+                    if (typeof object.jstype === "number") {
+                        message.jstype = object.jstype;
+                        break;
+                    }
+                    break;
                 case "JS_NORMAL":
                 case 0:
                     message.jstype = 0;
@@ -13822,7 +14752,7 @@ $root.google = (function() {
                     object.weak = false;
                 }
                 if (message.ctype != null && message.hasOwnProperty("ctype"))
-                    object.ctype = options.enums === String ? $root.google.protobuf.FieldOptions.CType[message.ctype] : message.ctype;
+                    object.ctype = options.enums === String ? $root.google.protobuf.FieldOptions.CType[message.ctype] === undefined ? message.ctype : $root.google.protobuf.FieldOptions.CType[message.ctype] : message.ctype;
                 if (message.packed != null && message.hasOwnProperty("packed"))
                     object.packed = message.packed;
                 if (message.deprecated != null && message.hasOwnProperty("deprecated"))
@@ -13830,7 +14760,7 @@ $root.google = (function() {
                 if (message.lazy != null && message.hasOwnProperty("lazy"))
                     object.lazy = message.lazy;
                 if (message.jstype != null && message.hasOwnProperty("jstype"))
-                    object.jstype = options.enums === String ? $root.google.protobuf.FieldOptions.JSType[message.jstype] : message.jstype;
+                    object.jstype = options.enums === String ? $root.google.protobuf.FieldOptions.JSType[message.jstype] === undefined ? message.jstype : $root.google.protobuf.FieldOptions.JSType[message.jstype] : message.jstype;
                 if (message.weak != null && message.hasOwnProperty("weak"))
                     object.weak = message.weak;
                 if (message.uninterpretedOption && message.uninterpretedOption.length) {
@@ -13996,11 +14926,12 @@ $root.google = (function() {
                 while (reader.pos < end) {
                     var tag = reader.uint32();
                     switch (tag >>> 3) {
-                    case 999:
-                        if (!(message.uninterpretedOption && message.uninterpretedOption.length))
-                            message.uninterpretedOption = [];
-                        message.uninterpretedOption.push($root.google.protobuf.UninterpretedOption.decode(reader, reader.uint32()));
-                        break;
+                    case 999: {
+                            if (!(message.uninterpretedOption && message.uninterpretedOption.length))
+                                message.uninterpretedOption = [];
+                            message.uninterpretedOption.push($root.google.protobuf.UninterpretedOption.decode(reader, reader.uint32()));
+                            break;
+                        }
                     default:
                         reader.skipType(tag & 7);
                         break;
@@ -14252,20 +15183,24 @@ $root.google = (function() {
                 while (reader.pos < end) {
                     var tag = reader.uint32();
                     switch (tag >>> 3) {
-                    case 2:
-                        message.allowAlias = reader.bool();
-                        break;
-                    case 3:
-                        message.deprecated = reader.bool();
-                        break;
-                    case 999:
-                        if (!(message.uninterpretedOption && message.uninterpretedOption.length))
-                            message.uninterpretedOption = [];
-                        message.uninterpretedOption.push($root.google.protobuf.UninterpretedOption.decode(reader, reader.uint32()));
-                        break;
-                    case 42113038:
-                        message[".jspb.test.IsExtension.simpleOption"] = reader.string();
-                        break;
+                    case 2: {
+                            message.allowAlias = reader.bool();
+                            break;
+                        }
+                    case 3: {
+                            message.deprecated = reader.bool();
+                            break;
+                        }
+                    case 999: {
+                            if (!(message.uninterpretedOption && message.uninterpretedOption.length))
+                                message.uninterpretedOption = [];
+                            message.uninterpretedOption.push($root.google.protobuf.UninterpretedOption.decode(reader, reader.uint32()));
+                            break;
+                        }
+                    case 42113038: {
+                            message[".jspb.test.IsExtension.simpleOption"] = reader.string();
+                            break;
+                        }
                     default:
                         reader.skipType(tag & 7);
                         break;
@@ -14521,14 +15456,16 @@ $root.google = (function() {
                 while (reader.pos < end) {
                     var tag = reader.uint32();
                     switch (tag >>> 3) {
-                    case 1:
-                        message.deprecated = reader.bool();
-                        break;
-                    case 999:
-                        if (!(message.uninterpretedOption && message.uninterpretedOption.length))
-                            message.uninterpretedOption = [];
-                        message.uninterpretedOption.push($root.google.protobuf.UninterpretedOption.decode(reader, reader.uint32()));
-                        break;
+                    case 1: {
+                            message.deprecated = reader.bool();
+                            break;
+                        }
+                    case 999: {
+                            if (!(message.uninterpretedOption && message.uninterpretedOption.length))
+                                message.uninterpretedOption = [];
+                            message.uninterpretedOption.push($root.google.protobuf.UninterpretedOption.decode(reader, reader.uint32()));
+                            break;
+                        }
                     default:
                         reader.skipType(tag & 7);
                         break;
@@ -14767,14 +15704,16 @@ $root.google = (function() {
                 while (reader.pos < end) {
                     var tag = reader.uint32();
                     switch (tag >>> 3) {
-                    case 33:
-                        message.deprecated = reader.bool();
-                        break;
-                    case 999:
-                        if (!(message.uninterpretedOption && message.uninterpretedOption.length))
-                            message.uninterpretedOption = [];
-                        message.uninterpretedOption.push($root.google.protobuf.UninterpretedOption.decode(reader, reader.uint32()));
-                        break;
+                    case 33: {
+                            message.deprecated = reader.bool();
+                            break;
+                        }
+                    case 999: {
+                            if (!(message.uninterpretedOption && message.uninterpretedOption.length))
+                                message.uninterpretedOption = [];
+                            message.uninterpretedOption.push($root.google.protobuf.UninterpretedOption.decode(reader, reader.uint32()));
+                            break;
+                        }
                     default:
                         reader.skipType(tag & 7);
                         break;
@@ -15024,17 +15963,20 @@ $root.google = (function() {
                 while (reader.pos < end) {
                     var tag = reader.uint32();
                     switch (tag >>> 3) {
-                    case 33:
-                        message.deprecated = reader.bool();
-                        break;
-                    case 34:
-                        message.idempotencyLevel = reader.int32();
-                        break;
-                    case 999:
-                        if (!(message.uninterpretedOption && message.uninterpretedOption.length))
-                            message.uninterpretedOption = [];
-                        message.uninterpretedOption.push($root.google.protobuf.UninterpretedOption.decode(reader, reader.uint32()));
-                        break;
+                    case 33: {
+                            message.deprecated = reader.bool();
+                            break;
+                        }
+                    case 34: {
+                            message.idempotencyLevel = reader.int32();
+                            break;
+                        }
+                    case 999: {
+                            if (!(message.uninterpretedOption && message.uninterpretedOption.length))
+                                message.uninterpretedOption = [];
+                            message.uninterpretedOption.push($root.google.protobuf.UninterpretedOption.decode(reader, reader.uint32()));
+                            break;
+                        }
                     default:
                         reader.skipType(tag & 7);
                         break;
@@ -15109,6 +16051,12 @@ $root.google = (function() {
                 if (object.deprecated != null)
                     message.deprecated = Boolean(object.deprecated);
                 switch (object.idempotencyLevel) {
+                default:
+                    if (typeof object.idempotencyLevel === "number") {
+                        message.idempotencyLevel = object.idempotencyLevel;
+                        break;
+                    }
+                    break;
                 case "IDEMPOTENCY_UNKNOWN":
                 case 0:
                     message.idempotencyLevel = 0;
@@ -15157,7 +16105,7 @@ $root.google = (function() {
                 if (message.deprecated != null && message.hasOwnProperty("deprecated"))
                     object.deprecated = message.deprecated;
                 if (message.idempotencyLevel != null && message.hasOwnProperty("idempotencyLevel"))
-                    object.idempotencyLevel = options.enums === String ? $root.google.protobuf.MethodOptions.IdempotencyLevel[message.idempotencyLevel] : message.idempotencyLevel;
+                    object.idempotencyLevel = options.enums === String ? $root.google.protobuf.MethodOptions.IdempotencyLevel[message.idempotencyLevel] === undefined ? message.idempotencyLevel : $root.google.protobuf.MethodOptions.IdempotencyLevel[message.idempotencyLevel] : message.idempotencyLevel;
                 if (message.uninterpretedOption && message.uninterpretedOption.length) {
                     object.uninterpretedOption = [];
                     for (var j = 0; j < message.uninterpretedOption.length; ++j)
@@ -15371,29 +16319,36 @@ $root.google = (function() {
                 while (reader.pos < end) {
                     var tag = reader.uint32();
                     switch (tag >>> 3) {
-                    case 2:
-                        if (!(message.name && message.name.length))
-                            message.name = [];
-                        message.name.push($root.google.protobuf.UninterpretedOption.NamePart.decode(reader, reader.uint32()));
-                        break;
-                    case 3:
-                        message.identifierValue = reader.string();
-                        break;
-                    case 4:
-                        message.positiveIntValue = reader.uint64();
-                        break;
-                    case 5:
-                        message.negativeIntValue = reader.int64();
-                        break;
-                    case 6:
-                        message.doubleValue = reader.double();
-                        break;
-                    case 7:
-                        message.stringValue = reader.bytes();
-                        break;
-                    case 8:
-                        message.aggregateValue = reader.string();
-                        break;
+                    case 2: {
+                            if (!(message.name && message.name.length))
+                                message.name = [];
+                            message.name.push($root.google.protobuf.UninterpretedOption.NamePart.decode(reader, reader.uint32()));
+                            break;
+                        }
+                    case 3: {
+                            message.identifierValue = reader.string();
+                            break;
+                        }
+                    case 4: {
+                            message.positiveIntValue = reader.uint64();
+                            break;
+                        }
+                    case 5: {
+                            message.negativeIntValue = reader.int64();
+                            break;
+                        }
+                    case 6: {
+                            message.doubleValue = reader.double();
+                            break;
+                        }
+                    case 7: {
+                            message.stringValue = reader.bytes();
+                            break;
+                        }
+                    case 8: {
+                            message.aggregateValue = reader.string();
+                            break;
+                        }
                     default:
                         reader.skipType(tag & 7);
                         break;
@@ -15703,12 +16658,14 @@ $root.google = (function() {
                     while (reader.pos < end) {
                         var tag = reader.uint32();
                         switch (tag >>> 3) {
-                        case 1:
-                            message.namePart = reader.string();
-                            break;
-                        case 2:
-                            message.isExtension = reader.bool();
-                            break;
+                        case 1: {
+                                message.namePart = reader.string();
+                                break;
+                            }
+                        case 2: {
+                                message.isExtension = reader.bool();
+                                break;
+                            }
                         default:
                             reader.skipType(tag & 7);
                             break;
@@ -15924,11 +16881,12 @@ $root.google = (function() {
                 while (reader.pos < end) {
                     var tag = reader.uint32();
                     switch (tag >>> 3) {
-                    case 1:
-                        if (!(message.location && message.location.length))
-                            message.location = [];
-                        message.location.push($root.google.protobuf.SourceCodeInfo.Location.decode(reader, reader.uint32()));
-                        break;
+                    case 1: {
+                            if (!(message.location && message.location.length))
+                                message.location = [];
+                            message.location.push($root.google.protobuf.SourceCodeInfo.Location.decode(reader, reader.uint32()));
+                            break;
+                        }
                     default:
                         reader.skipType(tag & 7);
                         break;
@@ -16198,37 +17156,42 @@ $root.google = (function() {
                     while (reader.pos < end) {
                         var tag = reader.uint32();
                         switch (tag >>> 3) {
-                        case 1:
-                            if (!(message.path && message.path.length))
-                                message.path = [];
-                            if ((tag & 7) === 2) {
-                                var end2 = reader.uint32() + reader.pos;
-                                while (reader.pos < end2)
+                        case 1: {
+                                if (!(message.path && message.path.length))
+                                    message.path = [];
+                                if ((tag & 7) === 2) {
+                                    var end2 = reader.uint32() + reader.pos;
+                                    while (reader.pos < end2)
+                                        message.path.push(reader.int32());
+                                } else
                                     message.path.push(reader.int32());
-                            } else
-                                message.path.push(reader.int32());
-                            break;
-                        case 2:
-                            if (!(message.span && message.span.length))
-                                message.span = [];
-                            if ((tag & 7) === 2) {
-                                var end2 = reader.uint32() + reader.pos;
-                                while (reader.pos < end2)
+                                break;
+                            }
+                        case 2: {
+                                if (!(message.span && message.span.length))
+                                    message.span = [];
+                                if ((tag & 7) === 2) {
+                                    var end2 = reader.uint32() + reader.pos;
+                                    while (reader.pos < end2)
+                                        message.span.push(reader.int32());
+                                } else
                                     message.span.push(reader.int32());
-                            } else
-                                message.span.push(reader.int32());
-                            break;
-                        case 3:
-                            message.leadingComments = reader.string();
-                            break;
-                        case 4:
-                            message.trailingComments = reader.string();
-                            break;
-                        case 6:
-                            if (!(message.leadingDetachedComments && message.leadingDetachedComments.length))
-                                message.leadingDetachedComments = [];
-                            message.leadingDetachedComments.push(reader.string());
-                            break;
+                                break;
+                            }
+                        case 3: {
+                                message.leadingComments = reader.string();
+                                break;
+                            }
+                        case 4: {
+                                message.trailingComments = reader.string();
+                                break;
+                            }
+                        case 6: {
+                                if (!(message.leadingDetachedComments && message.leadingDetachedComments.length))
+                                    message.leadingDetachedComments = [];
+                                message.leadingDetachedComments.push(reader.string());
+                                break;
+                            }
                         default:
                             reader.skipType(tag & 7);
                             break;
@@ -16504,11 +17467,12 @@ $root.google = (function() {
                 while (reader.pos < end) {
                     var tag = reader.uint32();
                     switch (tag >>> 3) {
-                    case 1:
-                        if (!(message.annotation && message.annotation.length))
-                            message.annotation = [];
-                        message.annotation.push($root.google.protobuf.GeneratedCodeInfo.Annotation.decode(reader, reader.uint32()));
-                        break;
+                    case 1: {
+                            if (!(message.annotation && message.annotation.length))
+                                message.annotation = [];
+                            message.annotation.push($root.google.protobuf.GeneratedCodeInfo.Annotation.decode(reader, reader.uint32()));
+                            break;
+                        }
                     default:
                         reader.skipType(tag & 7);
                         break;
@@ -16760,25 +17724,29 @@ $root.google = (function() {
                     while (reader.pos < end) {
                         var tag = reader.uint32();
                         switch (tag >>> 3) {
-                        case 1:
-                            if (!(message.path && message.path.length))
-                                message.path = [];
-                            if ((tag & 7) === 2) {
-                                var end2 = reader.uint32() + reader.pos;
-                                while (reader.pos < end2)
+                        case 1: {
+                                if (!(message.path && message.path.length))
+                                    message.path = [];
+                                if ((tag & 7) === 2) {
+                                    var end2 = reader.uint32() + reader.pos;
+                                    while (reader.pos < end2)
+                                        message.path.push(reader.int32());
+                                } else
                                     message.path.push(reader.int32());
-                            } else
-                                message.path.push(reader.int32());
-                            break;
-                        case 2:
-                            message.sourceFile = reader.string();
-                            break;
-                        case 3:
-                            message.begin = reader.int32();
-                            break;
-                        case 4:
-                            message.end = reader.int32();
-                            break;
+                                break;
+                            }
+                        case 2: {
+                                message.sourceFile = reader.string();
+                                break;
+                            }
+                        case 3: {
+                                message.begin = reader.int32();
+                                break;
+                            }
+                        case 4: {
+                                message.end = reader.int32();
+                                break;
+                            }
                         default:
                             reader.skipType(tag & 7);
                             break;

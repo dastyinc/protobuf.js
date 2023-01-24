@@ -205,70 +205,79 @@ $root.Message = (function() {
         while (reader.pos < end) {
             var tag = reader.uint32();
             switch (tag >>> 3) {
-            case 1:
-                message.stringVal = reader.string();
-                break;
-            case 2:
-                if (!(message.stringRepeated && message.stringRepeated.length))
-                    message.stringRepeated = [];
-                message.stringRepeated.push(reader.string());
-                break;
-            case 3:
-                message.uint64Val = reader.uint64();
-                break;
-            case 4:
-                if (!(message.uint64Repeated && message.uint64Repeated.length))
-                    message.uint64Repeated = [];
-                if ((tag & 7) === 2) {
-                    var end2 = reader.uint32() + reader.pos;
-                    while (reader.pos < end2)
-                        message.uint64Repeated.push(reader.uint64());
-                } else
-                    message.uint64Repeated.push(reader.uint64());
-                break;
-            case 5:
-                message.bytesVal = reader.bytes();
-                break;
-            case 6:
-                if (!(message.bytesRepeated && message.bytesRepeated.length))
-                    message.bytesRepeated = [];
-                message.bytesRepeated.push(reader.bytes());
-                break;
-            case 7:
-                message.enumVal = reader.int32();
-                break;
-            case 8:
-                if (!(message.enumRepeated && message.enumRepeated.length))
-                    message.enumRepeated = [];
-                if ((tag & 7) === 2) {
-                    var end2 = reader.uint32() + reader.pos;
-                    while (reader.pos < end2)
-                        message.enumRepeated.push(reader.int32());
-                } else
-                    message.enumRepeated.push(reader.int32());
-                break;
-            case 9:
-                if (message.int64Map === $util.emptyObject)
-                    message.int64Map = {};
-                var end2 = reader.uint32() + reader.pos;
-                key = "";
-                value = 0;
-                while (reader.pos < end2) {
-                    var tag2 = reader.uint32();
-                    switch (tag2 >>> 3) {
-                    case 1:
-                        key = reader.string();
-                        break;
-                    case 2:
-                        value = reader.int64();
-                        break;
-                    default:
-                        reader.skipType(tag2 & 7);
-                        break;
-                    }
+            case 1: {
+                    message.stringVal = reader.string();
+                    break;
                 }
-                message.int64Map[key] = value;
-                break;
+            case 2: {
+                    if (!(message.stringRepeated && message.stringRepeated.length))
+                        message.stringRepeated = [];
+                    message.stringRepeated.push(reader.string());
+                    break;
+                }
+            case 3: {
+                    message.uint64Val = reader.uint64();
+                    break;
+                }
+            case 4: {
+                    if (!(message.uint64Repeated && message.uint64Repeated.length))
+                        message.uint64Repeated = [];
+                    if ((tag & 7) === 2) {
+                        var end2 = reader.uint32() + reader.pos;
+                        while (reader.pos < end2)
+                            message.uint64Repeated.push(reader.uint64());
+                    } else
+                        message.uint64Repeated.push(reader.uint64());
+                    break;
+                }
+            case 5: {
+                    message.bytesVal = reader.bytes();
+                    break;
+                }
+            case 6: {
+                    if (!(message.bytesRepeated && message.bytesRepeated.length))
+                        message.bytesRepeated = [];
+                    message.bytesRepeated.push(reader.bytes());
+                    break;
+                }
+            case 7: {
+                    message.enumVal = reader.int32();
+                    break;
+                }
+            case 8: {
+                    if (!(message.enumRepeated && message.enumRepeated.length))
+                        message.enumRepeated = [];
+                    if ((tag & 7) === 2) {
+                        var end2 = reader.uint32() + reader.pos;
+                        while (reader.pos < end2)
+                            message.enumRepeated.push(reader.int32());
+                    } else
+                        message.enumRepeated.push(reader.int32());
+                    break;
+                }
+            case 9: {
+                    if (message.int64Map === $util.emptyObject)
+                        message.int64Map = {};
+                    var end2 = reader.uint32() + reader.pos;
+                    key = "";
+                    value = 0;
+                    while (reader.pos < end2) {
+                        var tag2 = reader.uint32();
+                        switch (tag2 >>> 3) {
+                        case 1:
+                            key = reader.string();
+                            break;
+                        case 2:
+                            value = reader.int64();
+                            break;
+                        default:
+                            reader.skipType(tag2 & 7);
+                            break;
+                        }
+                    }
+                    message.int64Map[key] = value;
+                    break;
+                }
             default:
                 reader.skipType(tag & 7);
                 break;
@@ -425,6 +434,12 @@ $root.Message = (function() {
                     message.bytesRepeated[i] = object.bytesRepeated[i];
         }
         switch (object.enumVal) {
+        default:
+            if (typeof object.enumVal === "number") {
+                message.enumVal = object.enumVal;
+                break;
+            }
+            break;
         case "ONE":
         case 1:
             message.enumVal = 1;
@@ -441,6 +456,10 @@ $root.Message = (function() {
             for (var i = 0; i < object.enumRepeated.length; ++i)
                 switch (object.enumRepeated[i]) {
                 default:
+                    if (typeof object.enumRepeated[i] === "number") {
+                        message.enumRepeated[i] = object.enumRepeated[i];
+                        break;
+                    }
                 case "ONE":
                 case 1:
                     message.enumRepeated[i] = 1;
@@ -533,11 +552,11 @@ $root.Message = (function() {
                 object.bytesRepeated[j] = options.bytes === String ? $util.base64.encode(message.bytesRepeated[j], 0, message.bytesRepeated[j].length) : options.bytes === Array ? Array.prototype.slice.call(message.bytesRepeated[j]) : message.bytesRepeated[j];
         }
         if (message.enumVal != null && message.hasOwnProperty("enumVal"))
-            object.enumVal = options.enums === String ? $root.Message.SomeEnum[message.enumVal] : message.enumVal;
+            object.enumVal = options.enums === String ? $root.Message.SomeEnum[message.enumVal] === undefined ? message.enumVal : $root.Message.SomeEnum[message.enumVal] : message.enumVal;
         if (message.enumRepeated && message.enumRepeated.length) {
             object.enumRepeated = [];
             for (var j = 0; j < message.enumRepeated.length; ++j)
-                object.enumRepeated[j] = options.enums === String ? $root.Message.SomeEnum[message.enumRepeated[j]] : message.enumRepeated[j];
+                object.enumRepeated[j] = options.enums === String ? $root.Message.SomeEnum[message.enumRepeated[j]] === undefined ? message.enumRepeated[j] : $root.Message.SomeEnum[message.enumRepeated[j]] : message.enumRepeated[j];
         }
         var keys2;
         if (message.int64Map && (keys2 = Object.keys(message.int64Map)).length) {

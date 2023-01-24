@@ -1,6 +1,5 @@
-import * as $protobuf from "../..";
-import Long from "long";
-
+import type $protobuf from "../..";
+import type Long from "long";
 export namespace jspb {
 
     namespace test {
@@ -438,6 +437,8 @@ export namespace jspb {
             repeatedGroup?: (jspb.test.TestGroup.IRepeatedGroup[]|null);
             requiredGroup: jspb.test.TestGroup.IRequiredGroup;
             optionalGroup?: (jspb.test.TestGroup.IOptionalGroup|null);
+            messageInGroup?: (jspb.test.TestGroup.IMessageInGroup|null);
+            enumInGroup?: (jspb.test.TestGroup.IEnumInGroup|null);
             id?: (string|null);
             requiredSimple: jspb.test.ISimple2;
             optionalSimple?: (jspb.test.ISimple2|null);
@@ -448,6 +449,8 @@ export namespace jspb {
             public repeatedGroup: jspb.test.TestGroup.IRepeatedGroup[];
             public requiredGroup: jspb.test.TestGroup.IRequiredGroup;
             public optionalGroup?: (jspb.test.TestGroup.IOptionalGroup|null);
+            public messageInGroup?: (jspb.test.TestGroup.IMessageInGroup|null);
+            public enumInGroup?: (jspb.test.TestGroup.IEnumInGroup|null);
             public id: string;
             public requiredSimple: jspb.test.ISimple2;
             public optionalSimple?: (jspb.test.ISimple2|null);
@@ -522,6 +525,74 @@ export namespace jspb {
                 public static toObject(message: jspb.test.TestGroup.OptionalGroup, options?: $protobuf.IConversionOptions): { [k: string]: any };
                 public toJSON(): { [k: string]: any };
                 public static getTypeUrl(typeUrlPrefix?: string): string;
+            }
+
+            interface IMessageInGroup {
+                id: jspb.test.TestGroup.MessageInGroup.INestedMessage;
+            }
+
+            class MessageInGroup implements IMessageInGroup {
+                constructor(properties?: jspb.test.TestGroup.IMessageInGroup);
+                public id: jspb.test.TestGroup.MessageInGroup.INestedMessage;
+                public static create(properties?: jspb.test.TestGroup.IMessageInGroup): jspb.test.TestGroup.MessageInGroup;
+                public static encode(message: jspb.test.TestGroup.IMessageInGroup, writer?: $protobuf.Writer): $protobuf.Writer;
+                public static encodeDelimited(message: jspb.test.TestGroup.IMessageInGroup, writer?: $protobuf.Writer): $protobuf.Writer;
+                public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): jspb.test.TestGroup.MessageInGroup;
+                public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): jspb.test.TestGroup.MessageInGroup;
+                public static verify(message: { [k: string]: any }): (string|null);
+                public static fromObject(object: { [k: string]: any }): jspb.test.TestGroup.MessageInGroup;
+                public static toObject(message: jspb.test.TestGroup.MessageInGroup, options?: $protobuf.IConversionOptions): { [k: string]: any };
+                public toJSON(): { [k: string]: any };
+                public static getTypeUrl(typeUrlPrefix?: string): string;
+            }
+
+            namespace MessageInGroup {
+
+                interface INestedMessage {
+                    id?: (string|null);
+                }
+
+                class NestedMessage implements INestedMessage {
+                    constructor(properties?: jspb.test.TestGroup.MessageInGroup.INestedMessage);
+                    public id: string;
+                    public static create(properties?: jspb.test.TestGroup.MessageInGroup.INestedMessage): jspb.test.TestGroup.MessageInGroup.NestedMessage;
+                    public static encode(message: jspb.test.TestGroup.MessageInGroup.INestedMessage, writer?: $protobuf.Writer): $protobuf.Writer;
+                    public static encodeDelimited(message: jspb.test.TestGroup.MessageInGroup.INestedMessage, writer?: $protobuf.Writer): $protobuf.Writer;
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): jspb.test.TestGroup.MessageInGroup.NestedMessage;
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): jspb.test.TestGroup.MessageInGroup.NestedMessage;
+                    public static verify(message: { [k: string]: any }): (string|null);
+                    public static fromObject(object: { [k: string]: any }): jspb.test.TestGroup.MessageInGroup.NestedMessage;
+                    public static toObject(message: jspb.test.TestGroup.MessageInGroup.NestedMessage, options?: $protobuf.IConversionOptions): { [k: string]: any };
+                    public toJSON(): { [k: string]: any };
+                    public static getTypeUrl(typeUrlPrefix?: string): string;
+                }
+            }
+
+            interface IEnumInGroup {
+                id: jspb.test.TestGroup.EnumInGroup.NestedEnum;
+            }
+
+            class EnumInGroup implements IEnumInGroup {
+                constructor(properties?: jspb.test.TestGroup.IEnumInGroup);
+                public id: jspb.test.TestGroup.EnumInGroup.NestedEnum;
+                public static create(properties?: jspb.test.TestGroup.IEnumInGroup): jspb.test.TestGroup.EnumInGroup;
+                public static encode(message: jspb.test.TestGroup.IEnumInGroup, writer?: $protobuf.Writer): $protobuf.Writer;
+                public static encodeDelimited(message: jspb.test.TestGroup.IEnumInGroup, writer?: $protobuf.Writer): $protobuf.Writer;
+                public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): jspb.test.TestGroup.EnumInGroup;
+                public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): jspb.test.TestGroup.EnumInGroup;
+                public static verify(message: { [k: string]: any }): (string|null);
+                public static fromObject(object: { [k: string]: any }): jspb.test.TestGroup.EnumInGroup;
+                public static toObject(message: jspb.test.TestGroup.EnumInGroup, options?: $protobuf.IConversionOptions): { [k: string]: any };
+                public toJSON(): { [k: string]: any };
+                public static getTypeUrl(typeUrlPrefix?: string): string;
+            }
+
+            namespace EnumInGroup {
+
+                enum NestedEnum {
+                    first = 0,
+                    second = 1
+                }
             }
         }
 

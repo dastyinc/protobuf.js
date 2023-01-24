@@ -1,4 +1,5 @@
-import * as $protobuf from "../..";
+import type $protobuf from "../..";
+import type Long from "long";
 export const FileDescriptorSet: $protobuf.Type;
 
 export const FileDescriptorProto: $protobuf.Type;
