@@ -7,7 +7,7 @@ module.exports = static_module_target;
 // - AMD and global scope depend on the full library for now.
 
 var util          = require("../util"),
-    protobuf      = require("protobufjs");
+    protobuf      = require("@seorii/protobufjs");
 
 static_module_target.description = "Static code without reflection as a module";
 
@@ -18,7 +18,7 @@ function static_module_target(root, options, callback) {
             return;
         }
         try {
-            output = util.wrap(output, protobuf.util.merge({ dependency: "protobufjs/minimal.js" }, options));
+            output = util.wrap(output, protobuf.util.merge({ dependency: "@seorii/protobufjs/minimal.js" }, options));
         } catch (e) {
             callback(e);
             return;
