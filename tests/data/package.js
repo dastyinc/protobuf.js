@@ -1,7 +1,7 @@
 /*eslint-disable block-scoped-var, id-length, no-control-regex, no-magic-numbers, no-prototype-builtins, no-redeclare, no-shadow, no-var, sort-vars*/
 "use strict";
 
-var $protobuf = require("../../minimal");
+var $protobuf = require("protobufjs/minimal.js");
 
 // Common aliases
 var $Reader = $protobuf.Reader, $Writer = $protobuf.Writer, $util = $protobuf.util;
@@ -336,8 +336,6 @@ $root.Package = (function() {
                     break;
                 }
             case 11: {
-                    if (message.bin === $util.emptyObject)
-                        message.bin = {};
                     var end2 = reader.uint32() + reader.pos;
                     key = "";
                     value = "";
@@ -355,12 +353,12 @@ $root.Package = (function() {
                             break;
                         }
                     }
-                    message.bin[key] = value;
+                    if (!message.bin)
+                        message.bin = {};
+                    message.bin[String(key)] = value;
                     break;
                 }
             case 12: {
-                    if (message.scripts === $util.emptyObject)
-                        message.scripts = {};
                     var end2 = reader.uint32() + reader.pos;
                     key = "";
                     value = "";
@@ -378,12 +376,12 @@ $root.Package = (function() {
                             break;
                         }
                     }
-                    message.scripts[key] = value;
+                    if (!message.scripts)
+                        message.scripts = {};
+                    message.scripts[String(key)] = value;
                     break;
                 }
             case 13: {
-                    if (message.dependencies === $util.emptyObject)
-                        message.dependencies = {};
                     var end2 = reader.uint32() + reader.pos;
                     key = "";
                     value = "";
@@ -401,12 +399,12 @@ $root.Package = (function() {
                             break;
                         }
                     }
-                    message.dependencies[key] = value;
+                    if (!message.dependencies)
+                        message.dependencies = {};
+                    message.dependencies[String(key)] = value;
                     break;
                 }
             case 15: {
-                    if (message.devDependencies === $util.emptyObject)
-                        message.devDependencies = {};
                     var end2 = reader.uint32() + reader.pos;
                     key = "";
                     value = "";
@@ -424,7 +422,9 @@ $root.Package = (function() {
                             break;
                         }
                     }
-                    message.devDependencies[key] = value;
+                    if (!message.devDependencies)
+                        message.devDependencies = {};
+                    message.devDependencies[String(key)] = value;
                     break;
                 }
             case 17: {
@@ -599,29 +599,21 @@ $root.Package = (function() {
         if (object.main != null)
             message.main = String(object.main);
         if (object.bin) {
-            if (typeof object.bin !== "object")
-                throw TypeError(".Package.bin: object expected");
             message.bin = {};
             for (var keys = Object.keys(object.bin), i = 0; i < keys.length; ++i)
                 message.bin[keys[i]] = String(object.bin[keys[i]]);
         }
         if (object.scripts) {
-            if (typeof object.scripts !== "object")
-                throw TypeError(".Package.scripts: object expected");
             message.scripts = {};
             for (var keys = Object.keys(object.scripts), i = 0; i < keys.length; ++i)
                 message.scripts[keys[i]] = String(object.scripts[keys[i]]);
         }
         if (object.dependencies) {
-            if (typeof object.dependencies !== "object")
-                throw TypeError(".Package.dependencies: object expected");
             message.dependencies = {};
             for (var keys = Object.keys(object.dependencies), i = 0; i < keys.length; ++i)
                 message.dependencies[keys[i]] = String(object.dependencies[keys[i]]);
         }
         if (object.devDependencies) {
-            if (typeof object.devDependencies !== "object")
-                throw TypeError(".Package.devDependencies: object expected");
             message.devDependencies = {};
             for (var keys = Object.keys(object.devDependencies), i = 0; i < keys.length; ++i)
                 message.devDependencies[keys[i]] = String(object.devDependencies[keys[i]]);

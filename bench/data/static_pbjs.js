@@ -1,7 +1,7 @@
 /*eslint-disable block-scoped-var, id-length, no-control-regex, no-magic-numbers, no-prototype-builtins, no-redeclare, no-shadow, no-var, sort-vars*/
 "use strict";
 
-var $protobuf = require("../../minimal");
+var $protobuf = require("protobufjs/minimal.js");
 
 var $Reader = $protobuf.Reader, $Writer = $protobuf.Writer, $util = $protobuf.util;
 
@@ -127,7 +127,7 @@ $root.Test = (function() {
                             this[keys[i]] = properties[keys[i]];
             }
 
-            InnerInner.prototype.long = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+            InnerInner.prototype.long =  0n;
             InnerInner.prototype["enum"] = 0;
             InnerInner.prototype.sint32 = 0;
 
