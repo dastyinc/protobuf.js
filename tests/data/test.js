@@ -16440,7 +16440,7 @@ $root.google = (function() {
                     object.identifierValue = "";
                     var long = new $util.LongBits(NaN, NaN, undefined);
                     object.positiveIntValue = options.longs === String ? long.toBigInt().toString() : options.longs === BigInt ? long.toBigInt().toString() : long;
-                    long = new $util.LongBits(NaN, NaN, undefined);
+                    var long = new $util.LongBits(NaN, NaN, undefined);
                     object.negativeIntValue = options.longs === String ? long.toBigInt().toString() : options.longs === BigInt ? long.toBigInt().toString() : long;
                     object.doubleValue = 0;
                     if (options.bytes === String)

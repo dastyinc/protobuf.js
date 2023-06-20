@@ -181,7 +181,7 @@ function beautifyCode(code) {
         output: { beautify: true }
     }).code;
     // Properly beautify
-    var ast = espree.parse(code);
+    var ast = espree.parse(code, { ecmaVersion: 2020 });
     estraverse.replace(ast, {
         enter: function(node, parent) {
             // rename short vars
@@ -227,7 +227,7 @@ function buildFunction(type, functionName, gen, scope) {
     var code = gen.toString(functionName)
         .replace(/((?!\.)types\[\d+])(\.values)/g, "$1"); // enums: use types[N] instead of reflected types[N].values
 
-    var ast = espree.parse(code);
+    var ast = espree.parse(code, { ecmaVersion: 2020 });
     /* eslint-disable no-extra-parens */
     estraverse.replace(ast, {
         enter: function(node, parent) {

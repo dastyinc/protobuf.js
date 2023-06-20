@@ -232,6 +232,7 @@ converter.toObject = function toObject(mtype) {
         gen
     ("}");
     }
+    let hasLong = false;
 
     if (normalFields.length) { gen
     ("if(o.defaults){");
@@ -240,9 +241,13 @@ converter.toObject = function toObject(mtype) {
                 prop  = util.safeProp(field.name);
             if (field.resolvedType instanceof Enum) gen
         ("d%s=o.enums===String?%j:%j", prop, field.resolvedType.valuesById[field.typeDefault], field.typeDefault);
-            else if (field.long) gen
-            ("var n=new util.LongBits(%i,%i,%j)", field.typeDefault.low, field.typeDefault.high, field.typeDefault.unsigned)
-            ("d%s=o.longs===String?n.toBigInt().toString():o.longs===BigInt?n.toBigInt().toString():n", prop);
+            else if (field.long) {
+                if(!hasLong) {
+                    gen("var n=new util.LongBits(%i,%i,%j)", field.typeDefault.low, field.typeDefault.high, field.typeDefault.unsigned)
+                    hasLong = true;
+                }
+                gen("d%s=o.longs===String?n.toBigInt().toString():o.longs===BigInt?n.toBigInt().toString():n", prop);
+            }
             else if (field.bytes) {
                 var arrayDefault = "[" + Array.prototype.slice.call(field.typeDefault).join(",") + "]";
                 gen
