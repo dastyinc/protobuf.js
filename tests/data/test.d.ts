@@ -1,4 +1,4 @@
-import type $protobuf from "../..";
+import type $protobuf from "@seorii/protobufjs";
 import type Long from "long";
 export namespace jspb {
 

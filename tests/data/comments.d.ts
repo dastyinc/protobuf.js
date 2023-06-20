@@ -1,4 +1,4 @@
-import type $protobuf from "../..";
+import type $protobuf from "@seorii/protobufjs";
 import type Long from "long";
 export interface ITest1 {
     field1?: (string|null);
